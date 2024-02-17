@@ -1,0 +1,8 @@
+[18-Jun-2023 08:36:08 Europe/Lisbon] PHP Fatal error:  Uncaught Error: Call to a member function devolveDatasParaPagamento() on null in /home/staffpe1/public_html/administrador/pagamentos/script_pagamentos.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/staffpe1/public_html/administrador/pagamentos/script_pagamentos.php on line 17
+[18-Jun-2023 08:36:09 Europe/Lisbon] PHP Fatal error:  Uncaught Error: Call to a member function devolveDatasParaPagamento() on null in /home/staffpe1/public_html/administrador/pagamentos/script_pagamentos.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/staffpe1/public_html/administrador/pagamentos/script_pagamentos.php on line 17
