@@ -1,0 +1,197 @@
+[25-Feb-2024 11:32:51 Europe/Lisbon] PHP Fatal error:  Uncaught Error: Call to undefined function formatarDataPortugues() in /home/staffpe1/public_html/ticket.php:49
+Stack trace:
+#0 {main}
+  thrown in /home/staffpe1/public_html/ticket.php on line 49
+[25-Feb-2024 11:32:54 Europe/Lisbon] PHP Fatal error:  Uncaught Error: Call to undefined function formatarDataPortugues() in /home/staffpe1/public_html/ticket.php:49
+Stack trace:
+#0 {main}
+  thrown in /home/staffpe1/public_html/ticket.php on line 49
+[25-Feb-2024 11:32:55 Europe/Lisbon] PHP Fatal error:  Uncaught Error: Call to undefined function formatarDataPortugues() in /home/staffpe1/public_html/ticket.php:49
+Stack trace:
+#0 {main}
+  thrown in /home/staffpe1/public_html/ticket.php on line 49
+[25-Feb-2024 11:37:25 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/politica_privacidade.php on line 32
+[25-Feb-2024 11:37:25 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/politica_privacidade.php on line 32
+[25-Feb-2024 11:37:25 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/politica_privacidade.php on line 33
+[25-Feb-2024 11:37:25 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/politica_privacidade.php on line 33
+[25-Feb-2024 11:37:25 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/politica_privacidade.php on line 34
+[25-Feb-2024 11:37:25 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/politica_privacidade.php on line 34
+[25-Feb-2024 11:37:25 UTC] PHP Notice:  Undefined variable: evento in /home/staffpe1/public_html/politica_privacidade.php on line 98
+[25-Feb-2024 11:37:25 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/politica_privacidade.php on line 98
+[25-Feb-2024 11:37:25 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/politica_privacidade.php on line 771
+[25-Feb-2024 11:37:25 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/politica_privacidade.php on line 771
+[25-Feb-2024 11:37:30 Europe/Lisbon] PHP Fatal error:  Uncaught Error: Call to undefined function formatarDataPortugues() in /home/staffpe1/public_html/ticket.php:49
+Stack trace:
+#0 {main}
+  thrown in /home/staffpe1/public_html/ticket.php on line 49
+[25-Feb-2024 11:39:06 Europe/Lisbon] PHP Fatal error:  Uncaught Error: Call to undefined function formatarDataPortugues() in /home/staffpe1/public_html/ticket.php:46
+Stack trace:
+#0 {main}
+  thrown in /home/staffpe1/public_html/ticket.php on line 46
+[25-Feb-2024 15:15:53 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 15:15:53 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 15:15:53 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 15:15:53 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 15:15:53 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 15:15:53 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 15:15:53 UTC] PHP Notice:  Undefined variable: evento in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 15:15:53 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 15:15:53 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 15:15:53 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 15:16:21 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 15:16:21 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 15:16:21 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 15:16:21 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 15:16:21 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 15:16:21 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 15:16:21 UTC] PHP Notice:  Undefined variable: evento in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 15:16:21 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 15:16:21 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 15:16:21 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 15:16:28 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 15:16:28 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 15:16:28 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 15:16:28 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 15:16:28 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 15:16:28 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 15:16:28 UTC] PHP Notice:  Undefined variable: evento in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 15:16:28 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 15:16:28 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 15:16:28 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 15:16:40 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 15:16:40 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 15:16:40 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 15:16:40 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 15:16:40 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 15:16:40 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 15:16:40 UTC] PHP Notice:  Undefined variable: evento in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 15:16:40 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 15:16:40 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 15:16:40 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Undefined variable: evento in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Undefined variable: evento in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 15:16:44 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 15:17:05 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 15:17:05 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 15:17:05 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 15:17:05 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 15:17:05 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 15:17:05 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 15:17:05 UTC] PHP Notice:  Undefined variable: evento in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 15:17:05 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 15:17:05 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 15:17:05 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 15:18:07 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 15:18:07 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 15:18:07 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 15:18:07 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 15:18:07 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 15:18:07 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 15:18:07 UTC] PHP Notice:  Undefined variable: evento in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 15:18:07 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 15:18:07 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 15:18:07 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 15:18:26 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 15:18:26 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 15:18:26 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 15:18:26 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 15:18:26 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 15:18:26 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 15:18:26 UTC] PHP Notice:  Undefined variable: evento in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 15:18:26 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 15:18:26 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 15:18:26 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 15:18:51 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/politica_privacidade.php on line 32
+[25-Feb-2024 15:18:51 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/politica_privacidade.php on line 32
+[25-Feb-2024 15:18:51 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/politica_privacidade.php on line 33
+[25-Feb-2024 15:18:51 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/politica_privacidade.php on line 33
+[25-Feb-2024 15:18:51 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/politica_privacidade.php on line 34
+[25-Feb-2024 15:18:51 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/politica_privacidade.php on line 34
+[25-Feb-2024 15:18:51 UTC] PHP Notice:  Undefined variable: evento in /home/staffpe1/public_html/politica_privacidade.php on line 98
+[25-Feb-2024 15:18:51 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/politica_privacidade.php on line 98
+[25-Feb-2024 15:18:51 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/politica_privacidade.php on line 771
+[25-Feb-2024 15:18:51 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/politica_privacidade.php on line 771
+[25-Feb-2024 15:18:52 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/cookies.php on line 32
+[25-Feb-2024 15:18:52 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/cookies.php on line 32
+[25-Feb-2024 15:18:52 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/cookies.php on line 33
+[25-Feb-2024 15:18:52 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/cookies.php on line 33
+[25-Feb-2024 15:18:52 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/cookies.php on line 34
+[25-Feb-2024 15:18:52 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/cookies.php on line 34
+[25-Feb-2024 15:18:52 UTC] PHP Notice:  Undefined variable: evento in /home/staffpe1/public_html/cookies.php on line 98
+[25-Feb-2024 15:18:52 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/cookies.php on line 98
+[25-Feb-2024 15:18:52 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/cookies.php on line 222
+[25-Feb-2024 15:18:52 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/cookies.php on line 222
+[25-Feb-2024 15:20:13 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/cookies.php on line 32
+[25-Feb-2024 15:20:13 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/cookies.php on line 32
+[25-Feb-2024 15:20:13 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/cookies.php on line 33
+[25-Feb-2024 15:20:13 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/cookies.php on line 33
+[25-Feb-2024 15:20:13 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/cookies.php on line 34
+[25-Feb-2024 15:20:13 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/cookies.php on line 34
+[25-Feb-2024 15:20:13 UTC] PHP Notice:  Undefined variable: evento in /home/staffpe1/public_html/cookies.php on line 98
+[25-Feb-2024 15:20:13 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/cookies.php on line 98
+[25-Feb-2024 15:20:13 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/cookies.php on line 222
+[25-Feb-2024 15:20:13 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/cookies.php on line 222
+[25-Feb-2024 15:45:54 Europe/Lisbon] PHP Parse error:  syntax error, unexpected 'data_extenso' (T_STRING) in /home/staffpe1/public_html/administrador/entradas/ticket_generator.obj.php on line 129
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/cookies.php on line 32
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/cookies.php on line 32
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/cookies.php on line 33
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/cookies.php on line 33
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/cookies.php on line 34
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/cookies.php on line 34
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Undefined variable: evento in /home/staffpe1/public_html/cookies.php on line 98
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/cookies.php on line 98
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/cookies.php on line 222
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/cookies.php on line 222
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Undefined variable: evento in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 17:33:43 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 17:39:45 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 17:39:45 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 32
+[25-Feb-2024 17:39:45 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 17:39:45 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 33
+[25-Feb-2024 17:39:45 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 17:39:45 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 34
+[25-Feb-2024 17:39:45 UTC] PHP Notice:  Undefined variable: evento in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 17:39:45 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 98
+[25-Feb-2024 17:39:45 UTC] PHP Notice:  Undefined variable: convite in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 17:39:45 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/staffpe1/public_html/termos_condicoes.php on line 627
+[25-Feb-2024 19:08:23 Europe/Lisbon] PHP Fatal error:  Uncaught Error: Call to undefined method evento::devolveEventoByMD5() in /home/staffpe1/public_html/ticket.php:51
+Stack trace:
+#0 {main}
+  thrown in /home/staffpe1/public_html/ticket.php on line 51
+[25-Feb-2024 19:08:25 Europe/Lisbon] PHP Fatal error:  Uncaught Error: Call to undefined method evento::devolveEventoByMD5() in /home/staffpe1/public_html/ticket.php:51
+Stack trace:
+#0 {main}
+  thrown in /home/staffpe1/public_html/ticket.php on line 51
+[25-Feb-2024 19:08:48 Europe/Lisbon] PHP Fatal error:  Uncaught Error: Call to undefined method evento::devolveEventoByMD5() in /home/staffpe1/public_html/ticket.php:51
+Stack trace:
+#0 {main}
+  thrown in /home/staffpe1/public_html/ticket.php on line 51
+[25-Feb-2024 19:09:46 Europe/Lisbon] PHP Fatal error:  Uncaught Error: Call to undefined method evento::devolveEventoByMD5() in /home/staffpe1/public_html/ticket.php:51
+Stack trace:
+#0 {main}
+  thrown in /home/staffpe1/public_html/ticket.php on line 51

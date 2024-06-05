@@ -182,7 +182,7 @@ class rp {
 		else{
 			$data_actual = date('Y-m-d');
 		}
-		$query = "SELECT data_evento FROM rps_entradas  GROUP BY data_evento DESC";
+		$query = "SELECT data_evento FROM rps_entradas WHERE data_evento >= " . date("Y-m-d", strtotime("-1 year")) . "  GROUP BY data_evento DESC";
 		$eventos = $this->db->query($query);
 
 		if($eventos){
@@ -280,6 +280,5 @@ class rp {
 		$query = "SELECT nome, descricao, valor FROM conta_corrente_linhas WHERE id_conta_corrente = '" . $id_conta_corrente . "'  ORDER BY id ASC";
 		$res = $this->db->query($query);
 		return $res;
-
 	}
 }

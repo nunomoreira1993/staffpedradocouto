@@ -1,0 +1,38 @@
+[05-May-2024 10:41:59 Europe/Lisbon] PHP Fatal error:  Uncaught Error: Class 'Dompdf\Adapter\CPDF' not found in /home/staffpe1/public_html/plugins/dompdf/vendor/dompdf/dompdf/src/CanvasFactory.php:56
+Stack trace:
+#0 /home/staffpe1/public_html/plugins/dompdf/vendor/dompdf/dompdf/src/Dompdf.php(274): Dompdf\CanvasFactory::get_instance(Object(Dompdf\Dompdf), 'letter', 'portrait')
+#1 /home/staffpe1/public_html/administrador/privados/imprimir_entrada_privados.php(9): Dompdf\Dompdf->__construct()
+#2 {main}
+  thrown in /home/staffpe1/public_html/plugins/dompdf/vendor/dompdf/dompdf/src/CanvasFactory.php on line 56
+[05-May-2024 10:42:04 Europe/Lisbon] PHP Fatal error:  Uncaught Error: Class 'Dompdf\Adapter\CPDF' not found in /home/staffpe1/public_html/plugins/dompdf/vendor/dompdf/dompdf/src/CanvasFactory.php:56
+Stack trace:
+#0 /home/staffpe1/public_html/plugins/dompdf/vendor/dompdf/dompdf/src/Dompdf.php(274): Dompdf\CanvasFactory::get_instance(Object(Dompdf\Dompdf), 'letter', 'portrait')
+#1 /home/staffpe1/public_html/administrador/privados/imprimir_entrada_privados.php(9): Dompdf\Dompdf->__construct()
+#2 {main}
+  thrown in /home/staffpe1/public_html/plugins/dompdf/vendor/dompdf/dompdf/src/CanvasFactory.php on line 56
+[05-May-2024 10:42:10 Europe/Lisbon] PHP Fatal error:  Uncaught Error: Class 'Dompdf\Css\Stylesheet' not found in /home/staffpe1/public_html/plugins/dompdf/vendor/dompdf/dompdf/src/Dompdf.php:276
+Stack trace:
+#0 /home/staffpe1/public_html/administrador/privados/imprimir_entrada_privados.php(9): Dompdf\Dompdf->__construct()
+#1 {main}
+  thrown in /home/staffpe1/public_html/plugins/dompdf/vendor/dompdf/dompdf/src/Dompdf.php on line 276
+[05-May-2024 10:42:10 Europe/Lisbon] PHP Fatal error:  Uncaught Error: Class 'Dompdf\Css\Stylesheet' not found in /home/staffpe1/public_html/plugins/dompdf/vendor/dompdf/dompdf/src/Dompdf.php:276
+Stack trace:
+#0 /home/staffpe1/public_html/administrador/privados/imprimir_entrada_privados.php(9): Dompdf\Dompdf->__construct()
+#1 {main}
+  thrown in /home/staffpe1/public_html/plugins/dompdf/vendor/dompdf/dompdf/src/Dompdf.php on line 276
+[05-May-2024 10:42:40 Europe/Lisbon] PHP Fatal error:  Uncaught Error: Class 'Masterminds\HTML5\Parser\TreeBuildingRules' not found in /home/staffpe1/public_html/plugins/dompdf/vendor/masterminds/html5/src/HTML5/Parser/DOMTreeBuilder.php:187
+Stack trace:
+#0 /home/staffpe1/public_html/plugins/dompdf/vendor/masterminds/html5/src/HTML5.php(157): Masterminds\HTML5\Parser\DOMTreeBuilder->__construct(false, Array)
+#1 /home/staffpe1/public_html/plugins/dompdf/vendor/masterminds/html5/src/HTML5.php(89): Masterminds\HTML5->parse('\n<!DOCTYPE html...', Array)
+#2 /home/staffpe1/public_html/plugins/dompdf/vendor/dompdf/dompdf/src/Dompdf.php(478): Masterminds\HTML5->loadHTML('\n<!DOCTYPE html...')
+#3 /home/staffpe1/public_html/administrador/privados/imprimir_entrada_privados.php(122): Dompdf\Dompdf->loadHtml('\n<!DOCTYPE html...')
+#4 {main}
+  thrown in /home/staffpe1/public_html/plugins/dompdf/vendor/masterminds/html5/src/HTML5/Parser/DOMTreeBuilder.php on line 187
+[05-May-2024 10:42:40 Europe/Lisbon] PHP Fatal error:  Uncaught Error: Class 'Masterminds\HTML5\Parser\TreeBuildingRules' not found in /home/staffpe1/public_html/plugins/dompdf/vendor/masterminds/html5/src/HTML5/Parser/DOMTreeBuilder.php:187
+Stack trace:
+#0 /home/staffpe1/public_html/plugins/dompdf/vendor/masterminds/html5/src/HTML5.php(157): Masterminds\HTML5\Parser\DOMTreeBuilder->__construct(false, Array)
+#1 /home/staffpe1/public_html/plugins/dompdf/vendor/masterminds/html5/src/HTML5.php(89): Masterminds\HTML5->parse('\n<!DOCTYPE html...', Array)
+#2 /home/staffpe1/public_html/plugins/dompdf/vendor/dompdf/dompdf/src/Dompdf.php(478): Masterminds\HTML5->loadHTML('\n<!DOCTYPE html...')
+#3 /home/staffpe1/public_html/administrador/privados/imprimir_entrada_privados.php(122): Dompdf\Dompdf->loadHtml('\n<!DOCTYPE html...')
+#4 {main}
+  thrown in /home/staffpe1/public_html/plugins/dompdf/vendor/masterminds/html5/src/HTML5/Parser/DOMTreeBuilder.php on line 187

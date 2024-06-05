@@ -89,12 +89,28 @@ $tipo = $adm['tipo'];
             }
             if ($tipo == 2 || $tipo == 1) {
                 ?>
-                    <li <?php if ($_GET['pg'] == "adicionar_entradas" || $_GET['pg'] == "gerir_entradas" || $_GET['pg'] == "eventos_entradas" || $_GET['pg'] == "entradas_evento_rps" || $_GET['pg'] == "cartoes_consumo_obrigatorio" || $_GET['pg'] == "cartoes_sem_consumo" || $_GET['pg'] == "entradas_evento_data") { ?> class="active" <?php } ?>>
+                    <li <?php if ($_GET['pg'] == "adicionar_entradas" ||$_GET['pg'] == "qrcode" || $_GET['pg'] == "gerir_entradas" || $_GET['pg'] == "eventos_entradas" || $_GET['pg'] == "eventos" || $_GET['pg'] == "entradas_evento_rps" || $_GET['pg'] == "cartoes_consumo_obrigatorio" || $_GET['pg'] == "cartoes_sem_consumo" || $_GET['pg'] == "entradas_evento_data") { ?> class="active" <?php } ?>>
                         <a class="link" href="javascript:void(0)" aria-expanded="false">
                             <i class="icone"></i>
                             <span class="nome">Entradas</span>
                         </a>
                         <ul aria-expanded="false" class="collapse in">
+							<?php
+							if($tipo == 1){
+							?>
+							<li>
+								<a href="?pg=eventos" <?php if ($_GET['pg'] == "eventos") { ?> class="active" <?php } ?>>
+									Eventos
+								</a>
+							</li>
+							<?php
+							}
+							?>
+                            <li>
+                                <a href="?pg=qrcode" <?php if ($_GET['pg'] == "qrcode") { ?> class="active" <?php } ?>>
+                                    QR Code
+                                </a>
+                            </li>
                             <li>
                                 <a href="?pg=adicionar_entradas&letra=a" <?php if ($_GET['pg'] == "adicionar_entradas") { ?> class="active" <?php } ?>>
                                     Adicionar entradas
@@ -117,7 +133,7 @@ $tipo = $adm['tipo'];
                             </li>
                             <li>
                                 <a href="?pg=eventos_entradas" <?php if ($_GET['pg'] == "eventos_entradas" || $_GET['pg'] == "entradas_evento_rps" || $_GET['pg'] == "entradas_evento_data") { ?> class="active" <?php } ?>>
-                                    Eventos
+                                    Últimos Eventos
                                 </a>
                             </li>
                         </ul>
@@ -125,45 +141,54 @@ $tipo = $adm['tipo'];
                 <?php
 
             }
-            if ($tipo == 3  || $tipo == 1 || $tipo == 4) {
+            if ($tipo == 3  || $tipo == 1 || $tipo == 4 || $tipo == 7) {
                 ?>
-                    <li <?php if ($_GET['pg'] == "gestao_salas" || $_GET['pg'] == "gestao_bares" || $_GET['pg'] == "inserir_bares" || $_GET['pg'] == "inserir_sala" ||  $_GET['pg'] == "inserir_garrafa" || $_GET['pg'] == "escolher_mesa_privados" || $_GET['pg'] == "inserir_venda_privados" || $_GET['pg'] == "inserir_venda_garrafas" || $_GET['pg'] == "gestao_mesas" || $_GET['pg'] == "venda_privados" || $_GET['pg'] == "venda_garrafas" || $_GET['pg'] == "gestao_garrafas" || $_GET['pg'] == "historico_privados" || $_GET['pg'] == "historico_garrafas" || $_GET['pg'] == "privados_evento_data" || $_GET['pg'] == "garrafas_evento_data" || $_GET['pg'] == "reservas_garrafas") { ?> class="active" <?php } ?>>
+                    <li <?php if ($_GET['pg'] == "gestao_salas" || $_GET['pg'] == "gestao_bares" || $_GET['pg'] == "inserir_bares" || $_GET['pg'] == "inserir_sala" ||  $_GET['pg'] == "inserir_garrafa" || $_GET['pg'] == "escolher_mesa_privados" || $_GET['pg'] == "inserir_venda_privados" || $_GET['pg'] == "inserir_venda_garrafas" || $_GET['pg'] == "gestao_mesas" || $_GET['pg'] == "venda_privados" || $_GET['pg'] == "venda_garrafas" || $_GET['pg'] == "gestao_garrafas" || $_GET['pg'] == "historico_privados" || $_GET['pg'] == "historico_garrafas" || $_GET['pg'] == "privados_evento_data" || $_GET['pg'] == "garrafas_evento_data" || $_GET['pg'] == "reservas_garrafas"|| $_GET['pg'] == "entrada_privados") { ?> class="active" <?php } ?>>
                         <a class="link" href="javascript:void(0)" aria-expanded="false">
                             <i class="icone"></i>
                             <span class="nome">Privados</span>
                         </a>
                         <ul aria-expanded="false" class="collapse in">
                             <li>
+                                <a href="?pg=entrada_privados" <?php if ($_GET['pg'] == "entrada_privados" || ($tipo == 7 && empty($_GET['pg']))) { ?> class="active" <?php } ?>>
+                                    Entrada de privados
+                                </a>
                                 <?php
-                                if ($tipo == 1) {
+                                if($tipo != 7) {
                                     ?>
-                                    <a href="?pg=gestao_salas" <?php if ($_GET['pg'] == "gestao_salas" || $_GET['pg'] == "inserir_sala" || $_GET['pg'] == "gestao_mesas") { ?> class="active" <?php } ?>>
-                                        Gerir Salas
+                                    <?php
+                                    if ($tipo == 1) {
+                                        ?>
+                                        <a href="?pg=gestao_salas" <?php if ($_GET['pg'] == "gestao_salas" || $_GET['pg'] == "inserir_sala" || $_GET['pg'] == "gestao_mesas") { ?> class="active" <?php } ?>>
+                                            Gerir Salas
+                                        </a>
+                                        <a href="?pg=gestao_garrafas" <?php if ($_GET['pg'] == "gestao_garrafas" || $_GET['pg'] == "inserir_garrafa") { ?> class="active" <?php } ?>>
+                                            Gestão de Garrafas
+                                        </a>
+                                        <a href="?pg=gestao_bares" <?php if ($_GET['pg'] == "gestao_bares" || $_GET['pg'] == "inserir_bares") { ?> class="active" <?php } ?>>
+                                            Gestão de Bares
+                                        </a>
+                                    <?php
+                                    }
+                                    ?>
+                                    <a href="?pg=venda_privados" <?php if ($_GET['pg'] == "venda_privados" || $_GET['pg'] == "escolher_mesa_privados" || $_GET['pg'] == "inserir_venda_privados") { ?> class="active" <?php } ?>>
+                                        Venda de Privados
                                     </a>
-                                    <a href="?pg=gestao_garrafas" <?php if ($_GET['pg'] == "gestao_garrafas" || $_GET['pg'] == "inserir_garrafa") { ?> class="active" <?php } ?>>
-                                        Gestão de Garrafas
+                                    <a href="?pg=venda_garrafas" <?php if ($_GET['pg'] == "venda_garrafas" || $_GET['pg'] == "inserir_venda_garrafas") { ?> class="active" <?php } ?>>
+                                        Venda de Garrafas
                                     </a>
-                                    <a href="?pg=gestao_bares" <?php if ($_GET['pg'] == "gestao_bares" || $_GET['pg'] == "inserir_bares") { ?> class="active" <?php } ?>>
-                                        Gestão de Bares
+                                    <a href="?pg=historico_privados" <?php if ($_GET['pg'] == "historico_privados" || $_GET['pg'] == "privados_evento_data") { ?> class="active" <?php } ?>>
+                                        Histórico Privados
                                     </a>
-                                <?php
-                            }
-                            ?>
-                                <a href="?pg=venda_privados" <?php if ($_GET['pg'] == "venda_privados" || $_GET['pg'] == "escolher_mesa_privados" || $_GET['pg'] == "inserir_venda_privados") { ?> class="active" <?php } ?>>
-                                    Venda de Privados
-                                </a>
-                                <a href="?pg=venda_garrafas" <?php if ($_GET['pg'] == "venda_garrafas" || $_GET['pg'] == "inserir_venda_garrafas") { ?> class="active" <?php } ?>>
-                                    Venda de Garrafas
-                                </a>
-                                <a href="?pg=historico_privados" <?php if ($_GET['pg'] == "historico_privados" || $_GET['pg'] == "privados_evento_data") { ?> class="active" <?php } ?>>
-                                    Histórico Privados
-                                </a>
-                                <a href="?pg=historico_garrafas" <?php if ($_GET['pg'] == "historico_garrafas" || $_GET['pg'] == "garrafas_evento_data") { ?> class="active" <?php } ?>>
-                                    Histórico Garrafas
-                                </a>
-                                <a href="?pg=reservas_garrafas" <?php if ($_GET['pg'] == "reservas_garrafas") { ?> class="active" <?php } ?>>
-                                    Reservas de Garrafas
-                                </a>
+                                    <a href="?pg=historico_garrafas" <?php if ($_GET['pg'] == "historico_garrafas" || $_GET['pg'] == "garrafas_evento_data") { ?> class="active" <?php } ?>>
+                                        Histórico Garrafas
+                                    </a>
+                                    <a href="?pg=reservas_garrafas" <?php if ($_GET['pg'] == "reservas_garrafas") { ?> class="active" <?php } ?>>
+                                        Reservas de Garrafas
+                                    </a>
+                                    <?php
+                                }
+                                ?>
                             </li>
                         </ul>
                     </li>
@@ -241,6 +266,8 @@ $tipo = $adm['tipo'];
     <script src="/temas/administrador/js/fancybox.js?v=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . "/temas/administrador/js/fancybox.js"); ?>"></script>
     <script src="/temas/administrador/js/teclado.js?v=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . "/temas/administrador/js/teclado.js"); ?>"></script>
 </body>
+
+
 
 </html>
 

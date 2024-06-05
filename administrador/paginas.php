@@ -8,13 +8,15 @@ if (isset($_GET['pg'])) {
 if ($tipo == 1) {
     $default =  $_SERVER['DOCUMENT_ROOT'] . "/administrador/administradores/administradores.php";
 } else if ($tipo == 2) {
-    $default =  $_SERVER['DOCUMENT_ROOT'] . "/administrador/entradas/adicionar_entradas.php";
+    $default =  $_SERVER['DOCUMENT_ROOT'] . "/administrador/entradas/qrcode.php";
 } else if ($tipo == 3) {
     $default = $_SERVER['DOCUMENT_ROOT'] . "/administrador/privados/venda_privados.php";
 } else if ($tipo == 4) {
     $default = $_SERVER['DOCUMENT_ROOT'] . "/administrador/privados/venda_privados.php";
 } else if ($tipo == 5) {
     $default = $_SERVER['DOCUMENT_ROOT'] . "/administrador/pagamentos/pagamentos.php";
+} else if ($tipo == 7) {
+    $default = $_SERVER['DOCUMENT_ROOT'] . "/administrador/privados/entrada_privados.php";
 }
 switch ($pg) {
 
@@ -30,6 +32,10 @@ switch ($pg) {
         include $_SERVER['DOCUMENT_ROOT'] . "/administrador/administradores/inserir_administrador.php";
         break;
 
+    case 'inserir_evento':
+        include $_SERVER['DOCUMENT_ROOT'] . "/administrador/entradas/inserir_evento.php";
+        break;
+
     case 'inserir_rp':
         include $_SERVER['DOCUMENT_ROOT'] . "/administrador/rps/inserir_rp.php";
         break;
@@ -41,6 +47,9 @@ switch ($pg) {
     case 'gerir_entradas':
         include $_SERVER['DOCUMENT_ROOT'] . "/administrador/entradas/gerir_entradas.php";
         break;
+    case 'qrcode':
+        include $_SERVER['DOCUMENT_ROOT'] . "/administrador/entradas/qrcode.php";
+        break;
 
     case 'entradas_rp':
         include $_SERVER['DOCUMENT_ROOT'] . "/administrador/rps/entradas_rp.php";
@@ -50,8 +59,12 @@ switch ($pg) {
         include $_SERVER['DOCUMENT_ROOT'] . "/administrador/entradas/eventos_entradas.php";
         break;
 
-    case 'entradas_evento_rps':
-        include $_SERVER['DOCUMENT_ROOT'] . "/administrador/entradas/entradas_evento_rps.php";
+    case 'eventos':
+        include $_SERVER['DOCUMENT_ROOT'] . "/administrador/entradas/eventos.php";
+        break;
+
+    case 'eventos_convites':
+        include $_SERVER['DOCUMENT_ROOT'] . "/administrador/entradas/eventos_convites.php";
         break;
 
     case 'entradas_evento_rps':
@@ -216,6 +229,10 @@ switch ($pg) {
 
     case 'editar_convite':
         include $_SERVER['DOCUMENT_ROOT'] . "/administrador/pagamentos/editar_convite.php";
+        break;
+
+    case 'entrada_privados':
+        include $_SERVER['DOCUMENT_ROOT'] . "/administrador/privados/entrada_privados.php";
         break;
 
     default:

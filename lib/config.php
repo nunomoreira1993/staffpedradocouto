@@ -2,13 +2,15 @@
 if(session_id() == '') {
 	session_start();
 }
+header("Access-Control-Allow-Origin: https://staffpedra.local:8001");
+header("Access-Control-Allow-Origin: https://guest.pedradocouto.net");
 error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING ^E_DEPRECATED);
 date_default_timezone_set( "Europe/Lisbon");
 
 # MySQL Config #1
-$cfg_mysql[1]['db'] = 'online_staffpedra';
-$cfg_mysql[1]['user'] = 'root';
-$cfg_mysql[1]['pass'] = '';
+$cfg_mysql[1]['db'] = 'staffpe1_guest';
+$cfg_mysql[1]['user'] = 'staffpe1_nuno';
+$cfg_mysql[1]['pass'] = '12qwaszx.-,';
 $cfg_mysql[1]['server'] = 'localhost';
 
 

@@ -140,6 +140,7 @@ if ($campos) {
                     <option value="3" <?php if ($administrador['tipo'] == 3) { ?> selected="selected" <?php } ?>> Privados </option>
                     <option value="4" <?php if ($administrador['tipo'] == 4) { ?> selected="selected" <?php } ?>> Caixa </option>
                     <option value="5" <?php if ($administrador['tipo'] == 5) { ?> selected="selected" <?php } ?>> Pagamentos </option>
+                    <option value="7" <?php if ($administrador['tipo'] == 7) { ?> selected="selected" <?php } ?>> Entrada Privados </option>
                 </select>
             </div>
         </div>

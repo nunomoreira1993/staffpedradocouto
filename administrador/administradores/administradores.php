@@ -67,7 +67,7 @@ if ($_GET['apagar'] == 1 && $_GET['id'] > 0) {
                         }
                         ?>
                         </td>
-                        <td><?php if ($admin['tipo'] == 1) { ?> Administrador <?php } else if ($admin['tipo'] == 2) { ?> Staff <?php } else if ($admin['tipo'] == 3) { ?> Privados <?php } else if ($admin['tipo'] == 4) { ?> Caixa <?php } else if ($admin['tipo'] == 5) { ?> Pagamentos <?php } ?></td>
+                        <td><?php if ($admin['tipo'] == 1) { ?> Administrador <?php } else if ($admin['tipo'] == 2) { ?> Staff <?php } else if ($admin['tipo'] == 3) { ?> Privados <?php } else if ($admin['tipo'] == 4) { ?> Caixa <?php } else if ($admin['tipo'] == 5) { ?> Pagamentos <?php } else if ($admin['tipo'] == 7) { ?> Entradas Privados <?php } ?></td>
                         <td class="text-nowrap">
                             <a href="?pg=inserir_administrador&id=<?php echo $admin['id']; ?>" class="editar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                             <a href="?pg=administradores&apagar=1&id=<?php echo $admin['id']; ?>" class="apagar"> <i class="fa fa-close text-danger"></i> </a>

@@ -40,26 +40,26 @@ function devolvePaginacao($pagina, $numero, $quantidade)
 	unset($params['p']);
 
 	$url = $parse_url['path']."?".http_build_query($params);
-	
+
 	if ($pagina == 0) {
 		$pagina = 1;
 	}
-	
+
 	$max_page = ceil($numero / $quantidade);
-	if($max_page > 1){		
-			
+	if($max_page > 1){
+
 		$primeira_pag = $pagina - 2;
-		
+
 		if ($primeira_pag < 1) {
 			$primeira_pag = 1;
 		}
-		
+
 		$ultima_pag = $primeira_pag + 5;
-		
+
 		if ($ultima_pag >= $max_page) {
 			$ultima_pag = $max_page;
 		}
-		
+
 		$html = '<div class="paginacao">';
 
 		if ($pagina > 1) {
@@ -535,7 +535,7 @@ function grava_ficheiro($origem, $destino, $maxlargura = 100, $maxaltura = 100, 
 	if ($copy) {
 		copy($params['tmp_name'], $salva);
 	} else {
-		move_uploaded_file($params['tmp_name'], $salva); // Este comando move o arquivo do diretório temporário para o caminho especificado acima 
+		move_uploaded_file($params['tmp_name'], $salva); // Este comando move o arquivo do diretório temporário para o caminho especificado acima
 	}
 
 	return $nome_imagem;
@@ -547,7 +547,7 @@ function euro($preco)
 }
 
 #
-# Converte nome do ficheiro 
+# Converte nome do ficheiro
 #
 function forceFilename($str, $spaceChar = '_')
 {
@@ -600,4 +600,65 @@ function pr($array)
 	echo "<pre>";
 	print_r($array);
 	echo "</pre>";
+}
+
+function real_getip() {
+	if ($_SERVER["HTTP_CLIENT_IP"]) {
+		return $_SERVER["HTTP_CLIENT_IP"];
+	}
+	foreach (explode(",",$_SERVER["HTTP_X_FORWARDED_FOR"]) as $ip) {
+		if (trim($ip)) {
+			return $ip;
+		}
+	}
+	if ($_SERVER["HTTP_X_FORWARDED"]) {
+		return $_SERVER["HTTP_X_FORWARDED"];
+	}
+	else if ($_SERVER["HTTP_FORWARDED_FOR"]) {
+		return $_SERVER["HTTP_FORWARDED_FOR"];
+	}
+	else if ($_SERVER["HTTP_FORWARDED"]) {
+		return $_SERVER["HTTP_FORWARDED"];
+	}
+	else if ($_SERVER["HTTP_X_FORWARDED"]) {
+		return $_SERVER["HTTP_X_FORWARDED"];
+	}
+	else {
+		return $_SERVER["REMOTE_ADDR"];
+	}
+}
+function formatarDataPortugues($data) {
+    // Array associativo para traduzir os nomes dos dias da semana
+    $dias_semana = array(
+        'Sunday' => 'Domingo',
+        'Monday' => 'Segunda-feira',
+        'Tuesday' => 'Terça-feira',
+        'Wednesday' => 'Quarta-feira',
+        'Thursday' => 'Quinta-feira',
+        'Friday' => 'Sexta-feira',
+        'Saturday' => 'Sábado'
+    );
+
+    // Array associativo para traduzir os nomes dos meses
+    $meses = array(
+        'January' => 'Janeiro',
+        'February' => 'Fevereiro',
+        'March' => 'Março',
+        'April' => 'Abril',
+        'May' => 'Maio',
+        'June' => 'Junho',
+        'July' => 'Julho',
+        'August' => 'Agosto',
+        'September' => 'Setembro',
+        'October' => 'Outubro',
+        'November' => 'Novembro',
+        'December' => 'Dezembro'
+    );
+
+    // Converter a data para o formato desejado
+    $dataFormatada = date('l, d \d\e F \d\e Y', strtotime($data));
+    $dataFormatada = strtr($dataFormatada, $dias_semana);
+    $dataFormatada = strtr($dataFormatada, $meses);
+
+    return $dataFormatada;
 }

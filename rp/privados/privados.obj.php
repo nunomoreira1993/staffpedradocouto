@@ -113,6 +113,12 @@ class privados
         $res = $this->db->query($query);
         return $res[0];
     }
+    function devolveEntradasMesa($id_mesa, $data_evento)
+    {
+        $query = "SELECT * FROM privados_salas_mesas_entradas  WHERE id_mesa = $id_mesa AND data_evento = '" . $data_evento . "'  ORDER BY id ASC";
+        $res = $this->db->query($query);
+        return $res;
+    }
 
     function devolveSalasPesquisa($nome = false, $data_evento = false)
     {
@@ -185,5 +191,18 @@ class privados
     function getMensagemDefault(){
 		$mensagem =  "Olá {NOME}!\nObrigado por reservares um privado connosco para o dia {DATA}, esperemos que te divirtas e aproveites a noite!\nDeixamos aqui os dados para efetuares um pagamento de {VALOR}€ (sinalização de 50% da tua reserva):\nIBAN: PT50 0018 2197 0184 4495 0204 7\nMBWAY: 913 577 141\nTens 2 formas de o fazer (sempre que possível através do MBWAY), pedimos apenas que na descrição coloques o nome da reserva em questão!\nCaso não faças a sinalização nas próximas 48h, a tua reserva irá ser cancelada.\nObrigado e até já!\nPEDRA DO COUTO";
         return $mensagem;
+    }
+    function devolveOcupacaoMesa($id_mesa, $data_evento)
+    {
+        $query = "SELECT * FROM privados_salas_mesas_ocupacao WHERE id_mesa = $id_mesa AND data_evento = '" . $data_evento . "'  ORDER BY id ASC";
+        $res = $this->db->query($query);
+        return $res[0];
+    }
+    function verificaMesaOcupada($id_mesa, $data_evento){
+        $query = "SELECT * FROM privados_salas_mesas_ocupacao WHERE id_mesa = $id_mesa AND data_evento = '" . $data_evento . "'  ORDER BY id ASC";
+        $res = $this->db->query($query);
+        if (!empty($res)) {
+            return $res[0];
+        }
     }
 }

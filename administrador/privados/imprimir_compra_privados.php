@@ -34,7 +34,7 @@ $venda = $dbprivados->devolveVendaPrivados($_GET['id']);
                     Data da compra
                 </span>
                 <span class="valor">
-                    <?php echo $venda['data']; ?>
+                    <?php echo date('d-m-Y H:i:s', strtotime($venda['data'])); ?>
                 </span>
             </div>
             <div class="bloco">
@@ -42,7 +42,7 @@ $venda = $dbprivados->devolveVendaPrivados($_GET['id']);
                     Data do evento
                 </span>
                 <span class="valor">
-                    <?php echo $venda['data_evento']; ?>
+                    <?php echo date('d-m-Y', strtotime($venda['data_evento'])); ?>
                 </span>
             </div>
             <div class="bloco">

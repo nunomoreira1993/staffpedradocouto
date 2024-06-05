@@ -184,6 +184,9 @@ $(function () {
 	if ($('form[name="inserir_rp"] .input-grupo select[name="id_cargo"]').length > 0) {
 		cargos.input();
 	}
+	if ($('.conteudo #entradas_disponibilidade').length > 0) {
+		entradas_disponibilidade.init();
+	}
 });
 var input_type = {
     pagamento: {
@@ -1376,3 +1379,141 @@ var cargos = {
 		}
 	}
 }
+function openPopupQRCode(status, message = "") {
+    $.fancybox.open({
+        src: "#error_success",
+        type: 'inline',
+        toolbar: false,
+        touch: {
+            vertical: false,
+            horizontal: false
+        },
+        smallBtn: true,
+        beforeClose: function (){
+            qrScanner.start();
+            $('#error_success').removeClass("success");
+            $('#error_success').removeClass("error");
+        },
+        afterShow: function afterShow(instance, current) {
+            if(status == 2) {
+                $('#error_success').removeClass("success");
+                $('#error_success').addClass("error");
+                $('.error .mensagem').html(message);
+            }
+            else {
+
+                $('#error_success').removeClass("error");
+                $('#error_success').addClass("success");
+                $('.sucesso .mensagem .nome_cliente').html(message);
+            }
+        }
+    });
+}
+
+
+var entradas_disponibilidade = {
+	init: function() {
+		$('.content .conteudo.disponibilidade .ocupar').on('click', function() {
+			var id_mesa = $(this).data('id');
+			entradas_disponibilidade.click(id_mesa);
+			return false;
+		});
+		$('.content .conteudo.disponibilidade .adicionar').on('click', function() {
+			var id_mesa = $(this).data('id');
+			entradas_disponibilidade.clickEntrada(id_mesa);
+			return false;
+		});
+	},
+	click: function(id_mesa) {
+		$.fancybox.open({
+			src: "/administrador/privados/ajax/teclado_numerico.html.php",
+			type: 'ajax',
+			toolbar: false,
+			touch: {
+				vertical: false,
+				horizontal: false
+			},
+			smallBtn: true,
+			beforeClose: function beforeClose() {
+				var valor = $('.fancybox-content.teclado-numerico .input input').val();
+				ajaxRps = function() {
+					var html = null;
+					$.ajax({
+						'async': false,
+						'global': false,
+						'data': {
+							"cartoes": valor,
+							"id_mesa": id_mesa
+						},
+						'type': "POST",
+						'url': "/administrador/privados/ajax/entrada_privados.ajax.php",
+						'dataType': "json",
+						'success': function success(data) {
+							location.reload();
+						}
+					});
+					return html;
+				}();
+			},
+			beforeShow: function beforeShow(instance, current) {},
+			afterShow: function afterShow(instance, current) {
+				entradas_disponibilidade.calculadora();
+			}
+		});
+	},
+	clickEntrada: function(id_mesa) {
+		$.fancybox.open({
+			src: "/administrador/privados/ajax/teclado_numerico.html.php",
+			type: 'ajax',
+			toolbar: false,
+			touch: {
+				vertical: false,
+				horizontal: false
+			},
+			smallBtn: true,
+			beforeClose: function beforeClose() {
+				var valor = $('.fancybox-content.teclado-numerico .input input').val();
+				ajaxRps = function() {
+					var html = null;
+					$.ajax({
+						'async': false,
+						'global': false,
+						'data': {
+							"cartoes": valor,
+							"id_mesa": id_mesa,
+                            "entrada": 1
+						},
+						'type': "POST",
+						'url': "/administrador/privados/ajax/entrada_privados.ajax.php",
+						'dataType': "json",
+						'success': function success(data) {
+							location.reload();
+						}
+					});
+					return html;
+				}();
+			},
+			beforeShow: function beforeShow(instance, current) {},
+			afterShow: function afterShow(instance, current) {
+				entradas_disponibilidade.calculadora();
+			}
+		});
+	},
+	calculadora: function calculadora($this) {
+		$('.fancybox-content.teclado-numerico .calculadora a').off().on('click', function() {
+			if ($(this).attr('data-numero') != "delete" && $(this).attr('data-numero') != "ok") {
+				$('.fancybox-content.teclado-numerico .input input').val($('.fancybox-content.teclado-numerico .input input').val().trim());
+				$('.fancybox-content.teclado-numerico .input input').val($('.fancybox-content.teclado-numerico .input input').val().trim() + $(this).attr('data-numero'));
+			} else if ($(this).attr('data-numero') == "delete") {
+				$('.fancybox-content.teclado-numerico .input input').val($('.fancybox-content.teclado-numerico .input input').val().slice(0, -1));
+			} else if ($(this).attr('data-numero') == "ok") {
+				if ($('.fancybox-content.teclado-numerico .input input').val().trim().length > 0) {
+					var valor = $('.fancybox-content.teclado-numerico .input input').val().trim();
+					$.fancybox.close();
+				}
+			}
+
+			return false;
+		});
+	}
+};

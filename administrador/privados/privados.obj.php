@@ -252,6 +252,19 @@ class privados
         }
         return $res[0];
     }
+    function devolveEntradaPrivados($id)
+    {
+        $query = "SELECT privados_salas_mesas_entradas.* FROM privados_salas_mesas_entradas  WHERE privados_salas_mesas_entradas.id = '" . $id . " '  ORDER BY privados_salas_mesas_entradas.id ASC";
+        $res = $this->db->query($query);
+        foreach ($res as $i => $rs) {
+            $mesa = $this->devolveMesa($rs['id_mesa']);
+            $sala = $this->devolveSala($mesa['id_sala']);
+            $res[$i]['mesa'] = $mesa['codigo_mesa'];
+            $res[$i]['sala'] = $sala['nome'];
+
+        }
+        return $res[0];
+    }
     function devolveGarrafaVendaPrivados($id)
     {
         $query = "SELECT venda_privados_garrafas.quantidade, venda_privados_garrafas.id_garrafa, garrafas.nome FROM venda_privados_garrafas INNER JOIN garrafas ON garrafas.id = venda_privados_garrafas.id_garrafa  WHERE venda_privados_garrafas.id_compra = '" . $id .  "' ORDER BY venda_privados_garrafas.id ASC";
@@ -263,7 +276,7 @@ class privados
         $query = "SELECT *, cartoes as numero_cartoes, nome as nome_cliente FROM privados_salas_mesas_disponibilidade WHERE id_mesa = $id_mesa AND data_evento = '" . $data_evento . "'  AND data >= '2022-08-13 22:00:00' ORDER BY id ASC";
 
         $res = $this->db->query($query);
-		
+
 
         if ($res[0]['id'] > 0) {
             // $query = "SELECT venda_privados.id FROM venda_privados WHERE venda_privados.id_reserva = '" . $res[0]['id'] .  "'";

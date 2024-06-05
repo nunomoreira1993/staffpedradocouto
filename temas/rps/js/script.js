@@ -1,3 +1,14 @@
+function trataMetodoEventosConvidar(){
+    var metodo = $('.eventos_convidar').find("select[name='metodo']").val();
+    $('.eventos_convidar').find('.input-tel, .input-email').addClass("hidden").find("input").removeAttr("required");
+    if(metodo == 1 || metodo == 2){
+        $('.eventos_convidar').find('.input-tel').removeClass("hidden").find("input").attr("required", true);
+    }
+    else if(metodo == 3){
+        $('.eventos_convidar').find('.input-email').removeClass("hidden").find("input").attr("required", true);
+    }
+}
+
 $(function () {
     if (typeof ($('.conteudo').attr('data-sucesso')) != "undefined" && $('.conteudo').attr('data-sucesso').length > 0) {
         swal({
@@ -5,6 +16,13 @@ $(function () {
             text: $('.conteudo').attr('data-sucesso'),
             icon: "success",
             button: "Ok",
+        });
+    }
+
+    if ($('.eventos_convidar').length > 0) {
+        trataMetodoEventosConvidar();
+        $('.eventos_convidar').find("select[name='metodo']").on("change", function() {
+            trataMetodoEventosConvidar();
         });
     }
 
@@ -435,3 +453,23 @@ var input_type = {
         }
     }
 };
+
+function copytoclipboard(input) {
+    // Get the text field
+    var copyText = document.getElementById(input);
+
+    // Select the text field
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+
+     // Copy the text inside the text field
+    navigator.clipboard.writeText(copyText.value);
+
+    swal({
+        title: "Sucesso!",
+        text: "O endereço foi copiado.",
+        icon: "success",
+        button: "Ok",
+    });
+
+  }

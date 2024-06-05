@@ -14,6 +14,18 @@ switch ($pg) {
 		include "alterar_foto.php";
 		break;
 
+	case 'eventos':
+		include "eventos.php";
+		break;
+
+	case 'eventos_convidar':
+		include "eventos_convidar.php";
+		break;
+
+	case 'eventos_convites':
+		include "eventos_convites.php";
+		break;
+
 	case 'cartoes_sem_consumo':
 		include "cartoes_sem_consumo.php";
 		break;
@@ -70,8 +82,16 @@ switch ($pg) {
 		include "historico_pagamentos.php";
 		break;
 
+	case 'homepage':
+		include "homepage.php";
+		break;
+
 
 	default:
-		include  "homepage.php";
+		if ($_SESSION["id_rp"] == 192) {
+			include  "eventos.php";
+		} else {
+			include  "homepage.php";
+		}
 		break;
 }

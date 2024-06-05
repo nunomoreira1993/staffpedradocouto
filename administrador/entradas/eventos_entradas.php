@@ -19,7 +19,7 @@ if ($_GET['data_evento']) {
 $entradasDiasRP = $dbrps->listaEntradasDiasTotal(false, $filtro, $limit);
 $numerDiasRP = $dbrps->contaEntradasDiasTotal(false, $filtro);
 ?>
-<h1 class="titulo"> Eventos </h1>
+<h1 class="titulo"> Últimos Eventos </h1>
 <div class="content" <?php echo escreveErroSucesso(); ?>>
 
     <form class="filtros" name="filtros" action="" method="GET">
