@@ -23,12 +23,12 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
   AddOutputFilterByType DEFLATE text/html
   AddOutputFilterByType DEFLATE text/javascript
   AddOutputFilterByType DEFLATE text/plain
-  AddOutputFilterByType DEFLATE text/xml 
+  AddOutputFilterByType DEFLATE text/xml
 	AddType image/x-icon .ico
 	AddType image/png .png
 
   SetOutputFilter DEFLATE
-  
+
   # Remove browser bugs (only needed for really old browsers)
   BrowserMatch ^Mozilla/4 gzip-only-text/html
   BrowserMatch ^Mozilla/4\.0[678] no-gzip
@@ -71,7 +71,7 @@ RewriteEngine On
 RewriteBase /
 
 # Not allows access from libwww-perl User-Agent.Lib
-RewriteCond %{HTTP_USER_AGENT} libwww-perl.* 
+RewriteCond %{HTTP_USER_AGENT} libwww-perl.*
 RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
 RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
 RewriteRule .* ? [F,L]
@@ -83,19 +83,21 @@ RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ 
 RewriteRule (.*) https://www.staffpedradocouto.com/$1 [R=301,L]
 
 # Force SSL
-#RewriteCond %{HTTPS} off
-#RewriteCond %{HTTP_HOST} !^(.*)\.dev$ [NC]
-#RewriteCond %{HTTP_HOST} !^(.*)\.local$ [NC]
-#RewriteCond %{HTTP_HOST} !^(.*)\.searadev\.com$ [NC]
-#RewriteCond %{REQUEST_URI} !^/\.well-known/(.*) [NC]
-#RewriteRule .* https://www.staffpedradocouto.com%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} !^(.*)\.dev$ [NC]
+RewriteCond %{HTTP_HOST} !^(.*)\.local:8001$ [NC]
+RewriteCond %{REQUEST_URI} !^/\.well-known/(.*) [NC]
+RewriteRule .* https://www.staffpedradocouto.com%{REQUEST_URI} [L,R=301]
 
 # Require the www
-#RewriteCond %{HTTP_HOST} !^$
-#RewriteCond %{HTTP_HOST} !^(.*)\.dev$ [NC]
-#RewriteCond %{HTTP_HOST} !^(.*)\.local$ [NC]
-#RewriteCond %{HTTP_HOST} !^(.*)\.searadev\.com$ [NC]
-#RewriteCond %{REQUEST_URI} !^/\.well-known/(.*) [NC]
-#RewriteCond %{HTTP_HOST} !^www\. [NC]
-#RewriteCond %{HTTPS}s ^on(s)|
-#RewriteRule ^/?(.*) https://www.staffpedradocouto.com/$1 [L,R,NE]
+RewriteCond %{HTTP_HOST} !^$
+RewriteCond %{HTTP_HOST} !^(.*)\.dev$ [NC]
+RewriteCond %{HTTP_HOST} !^(.*)\.local:8001$ [NC]
+RewriteCond %{REQUEST_URI} !^/\.well-known/(.*) [NC]
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteCond %{HTTPS}s ^on(s)|
+RewriteRule ^/?(.*) https://www.staffpedradocouto.com/$1 [L,R,NE]
+
+# Disable file access .sql
+RewriteCond %{REQUEST_URI} (?i)^/database/.*$
+RewriteRule .* - [F,L]
