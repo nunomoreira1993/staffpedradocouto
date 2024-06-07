@@ -79,6 +79,16 @@ class evento {
 		$res = $this->db->query($query);
 		return $res[0]['conta'];
 	}
+    function devolveCartaoSemConsumoByHash($hash) {
+		$query ="SELECT * FROM rps_cartoes_sem_consumo WHERE md5(id) = '" . $hash . "' AND entrou = 0";
+		$res = $this->db->query($query);
+		return $res[0];
+    }
+    function devolveCartaoConsumoObrigatorioByHash($hash) {
+		$query ="SELECT * FROM rps_cartoes_consumo_obrigatorio WHERE md5(id) = '" . $hash . "' AND entrou = 0";
+		$res = $this->db->query($query);
+		return $res[0];
+    }
 	function devolveMensagemDefault() {
 		return "Olá {NOME}!\nAcede a este endereço para entrares na minha Guest no próximo fim de semana.\n{ENDERECO}
 		\nObrigado e até já!\nPEDRA DO COUTO";

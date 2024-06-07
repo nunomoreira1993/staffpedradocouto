@@ -1379,7 +1379,7 @@ var cargos = {
 		}
 	}
 }
-function openPopupQRCode(status, message = "") {
+function openPopupQRCode(status, message = "", type = "") {
     $.fancybox.open({
         src: "#error_success",
         type: 'inline',
@@ -1405,6 +1405,7 @@ function openPopupQRCode(status, message = "") {
                 $('#error_success').removeClass("error");
                 $('#error_success').addClass("success");
                 $('.sucesso .mensagem .nome_cliente').html(message);
+                $('.sucesso h2 .tipo_bilhete').html(type);
             }
         }
     });

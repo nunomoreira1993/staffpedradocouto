@@ -1,7 +1,38 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/lib/config.php";
-$qrcode = $_POST['qrcode'];
+$qrcode = $_REQUEST['qrcode'];
+require_once($_SERVER['DOCUMENT_ROOT'] . '/administrador/eventos/evento.obj.php');
+$dbevento = new evento($db);
+
 if ($qrcode) {
+
+    $pos = strpos($qrcode, "cartao_1_" );
+
+    if ($pos !== false) {
+        $id = str_replace("cartao_1_","", $qrcode);
+        if($id) {
+            $cartao = $dbevento->getSemConsumoByID($id);
+            if($cartao) {
+                $db->update('rps_cartoes_sem_consumo', array("entrou" => 1), array("id"=> $cartao["id"]));
+                $db->Insert('logs', array('descricao' => "Entrada de cartão sem consumo via qrcode", 'arr' => json_encode($cartao), 'id_admin' => $_SESSION['id_utilizador'], 'tipo' => "Inserção", 'user_agent' => $_SERVER['HTTP_USER_AGENT'], 'ip' => $_SERVER['REMOTE_ADDR']));
+                echo json_encode(array('status' => "success", "client_name" => $cartao["nome"], "type" => "Cartão Sem Consumo"));
+                exit;
+            }
+        }
+    } else {
+        $pos = strpos($qrcode, "cartao_2_" );
+        if ($pos !== false) {
+            $id = str_replace("cartao_2_","", $qrcode);
+            $cartao = $dbevento->getConsumoObrigatorioByID($id);
+            if($cartao) {
+                $db->update('rps_cartoes_consumo_obrigatorio', array("entrou" => 1), array("id"=> $cartao["id"]));
+                $db->Insert('logs', array('descricao' => "Entrada de cartão  consumo obrigatório via qrcode", 'arr' => json_encode($cartao), 'id_admin' => $_SESSION['id_utilizador'], 'tipo' => "Inserção", 'user_agent' => $_SERVER['HTTP_USER_AGENT'], 'ip' => $_SERVER['REMOTE_ADDR']));
+                echo json_encode(array('status' => "success", "client_name" => $cartao["nome"], "type" => "Cartão Consumo Obrigatório"));
+                exit;
+            }
+        }
+    }
+
     if (!preg_match('/^[0-9]+$/', $qrcode)) {
         $arr["status"] = "error";
         $arr["message"] = "QR Code inválido.";
@@ -20,8 +51,6 @@ if ($qrcode) {
         exit;
     }
 
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/administrador/eventos/evento.obj.php');
-    $dbevento = new evento($db);
     $convite = $dbevento->getConviteByQRCode($qrcode);
     $evento = $dbevento->devolveEvento($convite["id_evento"]);
 
@@ -53,7 +82,7 @@ if ($qrcode) {
         if ($id > 0) {
             $db->update('eventos_convites', array("estado" => 2, "qrcode_entrada" => 1, "qrcode_entrada_data" => date("Y-m-d H:i:s")), array("id"=> $convite["id"]));
             $db->Insert('logs', array('descricao' => "Inseriu uma entrada via qrcode", 'arr' => json_encode($campos), 'id_admin' => $_SESSION['id_utilizador'], 'tipo' => "Inserção", 'user_agent' => $_SERVER['HTTP_USER_AGENT'], 'ip' => $_SERVER['REMOTE_ADDR']));
-            echo json_encode(array('status' => "success", "client_name" => $convite["nome"]));
+            echo json_encode(array('status' => "success", "client_name" => $convite["nome"], "type" => "Bilhete"));
             exit;
         }
     } else {

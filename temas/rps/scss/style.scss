@@ -636,53 +636,6 @@ body {
                             }
                         }
                     }
-                    .url_evento {
-                        width: 100%;
-                        input {
-                            cursor:pointer;
-                            width: calc(100% - 94px);
-                            background: #f6f8fa;
-                            padding: 5px 12px;
-                            color: #000;
-                            vertical-align: middle;
-                            background-repeat: no-repeat;
-                            background-position: right 8px center;
-                            border: 1px solid #d0d7de;
-                            border-radius: 6px;
-                            box-shadow: inset 0 1px 0 rgba(208, 215, 222, 0.2);;
-                            transition: 80ms cubic-bezier(0.33, 1, 0.68, 1);
-                            transition-property: color, background-color, box-shadow, border-color;
-                            min-height: 28px;
-                            padding-top: 3px;
-                            padding-bottom: 3px;
-                            font-size: 12px;
-                            line-height: 20px;
-                        }
-                        button {
-                            background:none;
-                            border:0;
-                        }
-                        .cKmcbz {
-                            padding: 0.5em 0.75em;
-                            width: -moz-max-content;
-                            width: auto;
-                            margin: auto;
-                            height:28px;
-                            display: flex;
-                            align-items: center;
-                            white-space: normal;
-                            font-size: 11px;
-                            -webkit-font-smoothing: subpixel-antialiased;
-                            color: #ffffff;
-                            text-align: center;
-                            overflow-wrap: break-word;
-                            background: #24292f;
-                            border-radius: 6px;
-                            border: 0px;
-                            max-width: 93px;
-                            overflow: visible;
-                        }
-                    }
                 }
                 .pagamento {
                     width: 100%;
@@ -2220,5 +2173,53 @@ body {
 .eventos_convidar  {
     .inputs.hidden {
         display: none;
+    }
+}
+
+.url_evento {
+    width: 100%;
+    input {
+        cursor:pointer;
+        width: calc(100% - 94px);
+        background: #f6f8fa;
+        padding: 5px 12px;
+        color: #000;
+        vertical-align: middle;
+        background-repeat: no-repeat;
+        background-position: right 8px center;
+        border: 1px solid #d0d7de;
+        border-radius: 6px;
+        box-shadow: inset 0 1px 0 rgba(208, 215, 222, 0.2);;
+        transition: 80ms cubic-bezier(0.33, 1, 0.68, 1);
+        transition-property: color, background-color, box-shadow, border-color;
+        min-height: 28px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        font-size: 12px;
+        line-height: 20px;
+    }
+    button {
+        background:none;
+        border:0;
+    }
+    .cKmcbz {
+        padding: 0.5em 0.75em;
+        width: -moz-max-content;
+        width: auto;
+        margin: auto;
+        height:28px;
+        display: flex;
+        align-items: center;
+        white-space: normal;
+        font-size: 11px;
+        -webkit-font-smoothing: subpixel-antialiased;
+        color: #ffffff;
+        text-align: center;
+        overflow-wrap: break-word;
+        background: #24292f;
+        border-radius: 6px;
+        border: 0px;
+        max-width: 93px;
+        overflow: visible;
     }
 }

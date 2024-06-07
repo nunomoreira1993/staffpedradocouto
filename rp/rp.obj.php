@@ -88,7 +88,7 @@ class rp {
 		$res = $this->db->query($sql);
 		return $res[0]['conta'];
 	}
-	function devolveCartoesConsumoObrigatorio($entrou, $data_evento = false){
+	function devolveCartoesConsumoObrigatorio($entrou = false, $data_evento = false){
 
 		$query = "";
 		if ($entrou) {

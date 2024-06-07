@@ -121,4 +121,12 @@ class evento {
 		$query = "SELECT * FROM eventos_convites WHERE qrcode = '" . $qrcode . "'";
 		return $this->db->query($query)[0];
 	}
+	function getSemConsumoByID($id){
+		$query = "SELECT * FROM rps_cartoes_sem_consumo WHERE id = '" . $id . "' AND entrou = 0";
+		return $this->db->query($query)[0];
+	}
+	function getConsumoObrigatorioByID($id){
+		$query = "SELECT * FROM rps_cartoes_consumo_obrigatorio WHERE id = '" . $id . "'  AND entrou = 0";
+		return $this->db->query($query)[0];
+	}
 }

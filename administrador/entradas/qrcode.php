@@ -1,6 +1,6 @@
 <div id="error_success" class="entrada-ajax with-qrcode">
     <div class="sucesso">
-        <h2> Bilhete válido! </h2>
+        <h2>  <b class="tipo_bilhete"></b> válido! </h2>
         <div class="mensagem">
             Cliente: <b class="nome_cliente"></b>
         </div>
@@ -80,7 +80,7 @@
                     qrcode_isload = false;
 
                     if (data.status == "success") {
-                        openPopupQRCode(1, data.client_name);
+                        openPopupQRCode(1, data.client_name, data.type);
                     } else {
                         openPopupQRCode(2, data.message);
                     }
