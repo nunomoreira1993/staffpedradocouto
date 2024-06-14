@@ -14,7 +14,7 @@ if ($qrcode) {
             $cartao = $dbevento->getSemConsumoByID($id);
             if($cartao) {
                 $db->update('rps_cartoes_sem_consumo', array("entrou" => 1), array("id"=> $cartao["id"]));
-                $db->Insert('logs', array('descricao' => "Entrada de cartão sem consumo via qrcode", 'arr' => json_encode($cartao), 'id_admin' => $_SESSION['id_utilizador'], 'tipo' => "Inserção", 'user_agent' => $_SERVER['HTTP_USER_AGENT'], 'ip' => $_SERVER['REMOTE_ADDR']));
+                $db->Insert('logs', array('descricao' => "Entrada de cartão sem consumo com <b> " . $cartao["bebidas"] . " </b> via qrcode", 'arr' => json_encode($cartao), 'id_admin' => $_SESSION['id_utilizador'], 'tipo' => "Inserção", 'user_agent' => $_SERVER['HTTP_USER_AGENT'], 'ip' => $_SERVER['REMOTE_ADDR']));
                 echo json_encode(array('status' => "success", "client_name" => $cartao["nome"], "type" => "Cartão Sem Consumo"));
                 exit;
             }

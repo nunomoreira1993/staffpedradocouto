@@ -25,7 +25,7 @@ if($_POST){
 		}
 		if(empty($_SESSION['erro'])){
 			foreach($_POST['input'] as $inputs){
-				$conta = 	$dbrp->validaCartaoSemConsumo($data_evento, intval($_GET['id']));
+				$conta = $dbrp->validaCartaoSemConsumo($data_evento, intval($_GET['id']));
 				$total = $conta + count($_POST['input']);
 				if(empty($inputs['nome'])){
 					$_SESSION['erro'] = "Por favor preêncha o campo nome, ou apague o campo";
@@ -38,6 +38,7 @@ if($_POST){
 				$campos['data_evento'] = $data_evento;
 				$campos['id_rp'] = $id_rp;
 				$campos['nome'] = $inputs['nome'];
+				$campos['bebidas'] = $inputs['bebidas'];
 				if ($_GET['id']) {
 					$db->Update('rps_cartoes_sem_consumo', $campos, 'id=' . intval($_GET['id']));
 					$_SESSION['sucesso'] = "A password foi alterada.";
@@ -71,7 +72,7 @@ else{
 		<span class="label"> Voltar </span>
 	</a>
 
-	<form name="formulario" class="consumo-obrigatorio" data-incremento="<?php echo count($campos['input']); ?>" action="" method="post">
+	<form name="formulario" class="consumo-obrigatorio sem-consumo" data-incremento="<?php echo count($campos['input']); ?>" action="" method="post">
 		<div class="inputs">
 			<div class="label">
 				Data do evento
@@ -80,18 +81,18 @@ else{
 				<input name="data_evento" value="<?php echo $data_evento; ?>"  required="required" type="date" min="<?php echo date('Y-m-d', strtotime('-1 day')); ?>" />
 			</div>
 		</div>
-		<?php 
+		<?php
 		foreach($campos['input'] as $k => $campo){
 			?>
 			<div class="bloco">
-				<?php 
+				<?php
 				if($k > 0){
 					?>
 					<a href="#" class="remover">
-						<img src="/temas/rps/imagens/remover.svg"/> 
+						<img src="/temas/rps/imagens/remover.svg"/>
 					</a>
-				<?php 
-				}		
+				<?php
+				}
 				?>
 				<div class="inputs">
 					<div class="label">
@@ -101,16 +102,24 @@ else{
 						<input name="input[<?php echo $k; ?>][nome]" value="<?php echo $campo['nome']; ?>" type="text" required="required" />
 					</div>
 				</div>
+				<div class="inputs">
+					<div class="label">
+						Número de Bebidas
+					</div>
+					<div class="input">
+						<input name="input[<?php echo $k; ?>][bebidas]" value="<?php echo $campo['bebidas']; ?>" type="number" min="0" max="4" />
+					</div>
+				</div>
 			</div>
 
-			<?php 
+			<?php
 		}
 		if($_GET['id'] == 0){
 			?>
 			<div class="inputs">
 				<input type="button" class="adicionar_mais" value="Adicionar mais" />
 			</div>
-			<?php 
+			<?php
 		}
 		?>
 		<div class="inputs">

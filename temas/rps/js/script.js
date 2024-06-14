@@ -147,7 +147,8 @@ var form = {
                 'async': false,
                 'global': false,
                 'data': {
-                    "i": $('form').attr('data-incremento')
+                    "i": $('form').attr('data-incremento'),
+                    "sem_consumo": $('form').hasClass('sem-consumo') ? 1 : 0,
                 },
                 'type': "GET",
                 'url': "/rp/ajax_adicionar_input.php",

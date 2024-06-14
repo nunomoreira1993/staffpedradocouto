@@ -59,6 +59,16 @@ if ($_GET['apagar'] && $_GET['id']) {
 							</div>
 						</div>
 					</div>
+					<div class="topo">
+						<div class="coluna">
+							<div class="titulo">
+								Bebidas
+							</div>
+							<div class="valor">
+								<?php echo $cartoes['bebidas']; ?>
+							</div>
+						</div>
+					</div>
 
 					<div class="url_evento">
 						<input type="text" class="form-control input-monospace" id="input-url-<?php echo $cartoes["id"]; ?>" data-autoselect="true" readonly="" value="https://guest.pedradocouto.net/download_qrcode.php?cartao=<?php echo md5($cartoes["id"]); ?>&tipo_cartao=1&hash=<?php echo md5($cartoes["id"] . "_" . $cartoes["data_evento"]. "_" . $cartoes["id_rp"]); ?>" tabindex="0">
