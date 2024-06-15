@@ -1723,8 +1723,16 @@ body {
     .mensagem {
       color: #ffffff;
       text-align: center;
-      padding: 20px 50px;
+      padding: 10px 50px;
       line-height: 27px;
+      width: 100%;
+    }
+    .bebidas {
+      color: #ffffff;
+      text-align: center;
+      padding: 10px 50px;
+      line-height: 27px;
+      width: 100%;
     }
   }
   .fancybox-close-small {
@@ -3548,7 +3556,8 @@ body {
       .mensagem {
         color: #fff;
         text-align: center;
-        max-width: 400px;
+        max-width: 100%;
+        width: 100%;
         margin: 0 auto;
         display: block;
         padding-bottom: 10px;

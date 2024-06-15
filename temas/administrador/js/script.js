@@ -1379,7 +1379,7 @@ var cargos = {
 		}
 	}
 }
-function openPopupQRCode(status, message = "", type = "") {
+function openPopupQRCode(status, message = "", type = "", bebidas = "") {
     $.fancybox.open({
         src: "#error_success",
         type: 'inline',
@@ -1395,6 +1395,7 @@ function openPopupQRCode(status, message = "", type = "") {
             $('#error_success').removeClass("error");
         },
         afterShow: function afterShow(instance, current) {
+            alert(message);
             if(status == 2) {
                 $('#error_success').removeClass("success");
                 $('#error_success').addClass("error");
@@ -1405,6 +1406,12 @@ function openPopupQRCode(status, message = "", type = "") {
                 $('#error_success').removeClass("error");
                 $('#error_success').addClass("success");
                 $('.sucesso .mensagem .nome_cliente').html(message);
+                if(bebidas) {
+                    $('.sucesso .bebidas').html(bebidas).show();
+                }
+                else {
+                    $('.sucesso .bebidas').hide();
+                }
                 $('.sucesso h2 .tipo_bilhete').html(type);
             }
         }
