@@ -1,6 +1,7 @@
 <?php
 class methods {
     private $host = "https://www.staffpedradocouto.com/ajax/methods/";
+    // private $host = "https://staffpedra.local:8001/ajax/methods/";
     private $hash;
     private $hash_evento;
     private $hash_rp;

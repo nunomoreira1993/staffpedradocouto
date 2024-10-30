@@ -9661,7 +9661,7 @@ h5,
 }
 @media (max-width: 991.98px) {
   .hero-wrap {
-    height: 450px;
+    height: 370px;
   }
   .hero-wrap .overlay {
     height: 1150px;
@@ -9844,6 +9844,7 @@ h5,
   font-size: 11px;
   font-weight: 600;
   color:red;
+
 }
 .request-form .form-group.error .error-message {
   display: block;
@@ -9851,12 +9852,7 @@ h5,
 .request-form .form-group.error .form-control {
   border: 1px solid red !important;
 }
-.request-form .iti {
-  width: 100%;
-}
-.request-form .form-group .iti--show-selected-dial-code.iti--show-flags .iti__selected-dial-code{
-  font-size: 10px;
-}
+
 .request-form .form-control::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   color: rgba(255, 255, 255, 0.7);

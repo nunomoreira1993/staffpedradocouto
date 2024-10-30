@@ -179,7 +179,6 @@ class BilheteGenerator {
             $mail->Subject = $assunto;
             $mail->Body = $mensagem;
             $mail->AltBody = $mensagem;
-
             // Anexo do bilhete (QR code)
             $mail->addStringAttachment($this->data['qrcode_image'], 'ticket.png', 'base64', 'image/png');
 

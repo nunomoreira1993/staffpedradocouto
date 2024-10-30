@@ -6,10 +6,11 @@ class evento {
 		$this->db = $db;
 		$this->id_rp = $id_rp;
 	}
+	
 	function verificaConviteTelemovel($telemovel, $id_evento){
-		$query ="SELECT 1 as existe FROM eventos_convites WHERE telemovel = '" . $telemovel . "' AND id_evento = '" . $id_evento . "' LIMIT 1";
+		$query ="SELECT hash FROM eventos_convites WHERE telemovel = '" . $telemovel . "' AND id_evento = '" . $id_evento . "' LIMIT 1";
 		$res = $this->db->query($query);
-		return $res[0]["existe"];
+		return $res[0]["hash"];
 	}
 	function getInfoConviteTelemovel($telemovel){
 		$query ="SELECT nome, telemovel, email, data_nascimento, termos_condicoes, marketing FROM eventos_convites WHERE telemovel = '" . $telemovel . "' ORDER BY id DESC LIMIT 1";

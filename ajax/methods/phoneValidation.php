@@ -20,8 +20,9 @@ if (preg_match('/^[a-f0-9]{32}$/i', $_GET["hash"]) || (preg_match('/^[a-f0-9]{32
     }
     if($evento) {
         if($_POST["phone"]) {
-            if($dbevento->verificaConviteTelemovel($_POST["phone"], $evento["id"])){
-                echo json_encode(array("status" => "error", "message" => "Já foi gerado um QR Code para este número."));
+            $hash = $dbevento->verificaConviteTelemovel($_POST["phone"], $evento["id"]);
+			if($hash){
+                echo json_encode(array("status" => "error", "message" => "Já foi gerado um QR Code para este número.", "hash" => $hash));
             }
             else {
                 $convite = $dbevento->getInfoConviteTelemovel($_POST["phone"]);

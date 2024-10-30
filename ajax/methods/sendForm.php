@@ -76,7 +76,7 @@ if (preg_match('/^[a-f0-9]{32}$/i', $_GET["hash"]) || (preg_match('/^[a-f0-9]{32
             $arrUpdate["data_nascimento"] = $fields["data_nascimento"];
             $arrUpdate["telemovel"] = $fields["telemovel"];
             $arrUpdate["email"] = $fields["email"];
-            $arrUpdate["qrcode"] = strtotime(date("now")) . $convite["id_rp"] . $convite["id_evento"] . $convite["id"];
+            $arrUpdate["qrcode"] = strtotime("now") . $convite["id_rp"] . $convite["id_evento"] . $convite["id"];
             $arrUpdate["qrcode_data"] = 1;
             $arrUpdate["qrcode_ip"] = real_getip();
             $arrUpdate["qrcode_user_agent"] = $_SERVER["HTTP_USER_AGENT"];
