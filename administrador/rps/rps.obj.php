@@ -92,7 +92,7 @@ class rps {
 
 		$query = "SELECT rps.* $campos FROM rps $join WHERE 1=1 $where ORDER BY nome $limit";
 		$res = $this->db->query($query);
-		
+
 		if ($entradas == 1) {
 			foreach ($res as $k => $rs) {
 				$id = $rs['id'];
@@ -491,6 +491,13 @@ class rps {
 		else{
 			return 0;
 		}
+	}
+	function listaCartoesData($data) {
+
+		$query = "SELECT rps_cartoes_sem_consumo.*, rps.nome as nome_rp FROM rps_cartoes_sem_consumo LEFT JOIN rps ON rps_cartoes_sem_consumo.id_rp = rps.id WHERE rps_cartoes_sem_consumo.data_evento = '" . $data . "' ORDER by rps_cartoes_sem_consumo.id DESC";
+
+		$res_entradas = $this->db->query($query);
+		return $res_entradas;
 	}
 
 }

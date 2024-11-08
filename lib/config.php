@@ -16,7 +16,7 @@ date_default_timezone_set( "Europe/Lisbon");
 # MySQL Config #1
 $cfg_mysql[1]['db'] = 'personal_pedra';
 $cfg_mysql[1]['user'] = 'root';
-$cfg_mysql[1]['pass'] = '';
+$cfg_mysql[1]['pass'] = 'p1wm6u';
 $cfg_mysql[1]['server'] = 'localhost';
 
 

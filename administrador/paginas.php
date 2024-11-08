@@ -235,6 +235,9 @@ switch ($pg) {
         include $_SERVER['DOCUMENT_ROOT'] . "/administrador/privados/entrada_privados.php";
         break;
 
+	case 'entradas_evento_convites':
+		include $_SERVER['DOCUMENT_ROOT'] . "/administrador/entradas/entradas_evento_convites.php";
+		break;
     default:
         include  $default;
         break;

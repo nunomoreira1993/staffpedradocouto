@@ -77,6 +77,7 @@ $numerDiasRP = $dbrps->contaEntradasDiasTotal(false, $filtro);
                                 <a href="/administrador/exportar/exportar_evento.php?data=<?php echo $rpp['data_evento']; ?>" class="exportar-excell"> Exportar para Excell </a>
                                 <a href="?pg=entradas_evento_data&data=<?php echo $rpp['data_evento']; ?>" class="entradas"> Ver entradas ao minuto </a>
                                 <a href="?pg=entradas_evento_rps&data=<?php echo $rpp['data_evento']; ?>" class="entradas"> Ver entradas por RP </a>
+                                <a href="?pg=entradas_evento_convites&data=<?php echo $rpp['data_evento']; ?>" class="entradas"> Ver entradas Convidados </a>
                             </div>
                         </td>
                     </tr>
