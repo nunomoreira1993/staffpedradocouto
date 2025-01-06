@@ -164,9 +164,10 @@ class pagamentos
 
             $datas = $this->devolveDatasParaPagamento($id_rp);
 
-            $equipa_pagamentos = $this->devolveEquipa($id_rp);
+            // $equipa_pagamentos = $this->devolveEquipa($id_rp);
 
             $return = array();
+			/*
             if ($equipa_pagamentos['total'] > 0) {
                 $return['equipa']['comissao'] = $equipa_pagamentos["total"];
                 foreach($equipa_pagamentos['lista'] as $data => $equip_pag){
@@ -175,6 +176,7 @@ class pagamentos
                     }
                 }
             }
+			*/
 
             if ($datas) {
 

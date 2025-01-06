@@ -24,7 +24,7 @@ if ($dbpagamentos->devolveDiferencaTotalCaixa($data_evento) < $pagamento['total'
 }
 if($id_rp > 0){
     $datas_pagamento = $dbpagamentos->devolveDatasParaPagamento($id_rp);
-    $equipa_pagamentos = $dbpagamentos->devolveEquipa($id_rp);
+    // $equipa_pagamentos = $dbpagamentos->devolveEquipa($id_rp);
 }
 
 if ( ( !empty($datas_pagamento) ||  !empty($equipa_pagamentos))  || $id_rp == 0) {
@@ -111,7 +111,7 @@ if ( ( !empty($datas_pagamento) ||  !empty($equipa_pagamentos))  || $id_rp == 0)
                 $id_conta_corrente_linha = $db->Insert('conta_corrente_linhas', $campo);
             }
         }
-		
+
 		if($datas_pagamento) {
 			foreach ($datas_pagamento as $data) {
 				unset($campo_eventos);
@@ -121,11 +121,12 @@ if ( ( !empty($datas_pagamento) ||  !empty($equipa_pagamentos))  || $id_rp == 0)
 				$db->Insert('conta_corrente_eventos', $campo_eventos);
 			}
 		}
-		
+
         $dbpagamentos->apagaExtras($id_rp);
 
         $_SESSION['sucesso'] = "Pagamento registado com sucesso.";
 
+		/*
         if ($equipa_pagamentos['rps']) {
             foreach ($equipa_pagamentos['rps'] as $rp_puppy) {
                 $datas_pagamento = $dbpagamentos->devolveDatasParaPagamento($rp_puppy);
@@ -163,6 +164,7 @@ if ( ( !empty($datas_pagamento) ||  !empty($equipa_pagamentos))  || $id_rp == 0)
                 }
             }
         }
+		*/
 
 
 

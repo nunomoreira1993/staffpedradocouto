@@ -24,7 +24,7 @@ if ($dbpagamentos->devolveDiferencaTotalCaixa($data_evento) < $pagamento['total'
 }
 if($id_rp > 0){
     $datas_pagamento = $dbpagamentos->devolveDatasParaPagamento($id_rp);
-    $equipa_pagamentos = $dbpagamentos->devolveEquipa($id_rp);
+    // $equipa_pagamentos = $dbpagamentos->devolveEquipa($id_rp);
 }
 
 if ( ( !empty($datas_pagamento) ||  !empty($equipa_pagamentos))  || $id_rp == 0) {
