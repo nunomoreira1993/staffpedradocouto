@@ -164,10 +164,10 @@ class pagamentos
 
             $datas = $this->devolveDatasParaPagamento($id_rp);
 
-            // $equipa_pagamentos = $this->devolveEquipa($id_rp);
+            $equipa_pagamentos = $this->devolveEquipa($id_rp);
 
             $return = array();
-			/*
+
             if ($equipa_pagamentos['total'] > 0) {
                 $return['equipa']['comissao'] = $equipa_pagamentos["total"];
                 foreach($equipa_pagamentos['lista'] as $data => $equip_pag){
@@ -176,7 +176,6 @@ class pagamentos
                     }
                 }
             }
-			*/
 
             if ($datas) {
 
@@ -291,7 +290,7 @@ class pagamentos
             $ids_array = array_column($rps, 'id');
         }
         $where = "";
-        $datas = $this->devolveDatasParaPagamento($ids_array);
+        $datas = $this->devolveDatasParaPagamento($id_rp);
 
         if ($datas) {
             $resultado['total'] = 0;
@@ -313,7 +312,7 @@ class pagamentos
                             $resultado['lista'][$data['data_evento']]['total']['total_pagar'] += $resultado['lista'][$data['data_evento']]['rps'][$i]['total_chefe'] = ($entradas[0]['quantidade'] * 0.5);
                         }
 						$resultado['lista'][$data['data_evento']]['total']['quantidade'] += $entradas[0]['quantidade'];
-						$resultado['lista'][$data['data_evento']]['total']['total_pagar'] += $resultado['lista'][$data['data_evento']]['rps'][$i]['total_rp'] = ($entradas[0]['quantidade'] * 1);
+						// $resultado['lista'][$data['data_evento']]['total']['total_pagar'] += $resultado['lista'][$data['data_evento']]['rps'][$i]['total_rp'] = ($entradas[0]['quantidade'] * 1);
                     }
                     $privados = $this->devolveComissaoPrivados($rp['id'], $data['data_evento']);
 
@@ -322,13 +321,13 @@ class pagamentos
                         $resultado['lista'][$data['data_evento']]['rps'][$i]['privados'] = $privados['descricao'];
 
                         #comissao
-                        $resultado['lista'][$data['data_evento']]['total']['total_pagar'] +=  $privados['comissao'];
+                        // $resultado['lista'][$data['data_evento']]['total']['total_pagar'] +=  $privados['comissao'];
                         $resultado['lista'][$data['data_evento']]['total']['total_pago_privados'] += $privados['comissao'];
                         $resultado['lista'][$data['data_evento']]['rps'][$i]['total_privados_rp'] +=  $privados['comissao'];
 
                         #cartoes
-                        $resultado['lista'][$data['data_evento']]['total']['total_pagar'] += $privados['total_cartoes'] * 0.5;
-                        $resultado['lista'][$data['data_evento']]['total']['total_privados_chefe'] += $privados['total_cartoes'] * 0.5;
+                        // $resultado['lista'][$data['data_evento']]['total']['total_pagar'] += $privados['total_cartoes'] * 0.5;
+                        $resultado['lista'][$data['data_evento']]['total']['total_pagar'] += ($resultado['lista'][$data['data_evento']]['total']['total_privados_chefe'] += $privados['total_cartoes'] * 0.5);
                         $resultado['lista'][$data['data_evento']]['rps'][$i]['total_privados_chefe'] += $privados['total_cartoes'] * 0.5;
                     }
 

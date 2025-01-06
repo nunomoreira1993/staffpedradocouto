@@ -16,7 +16,7 @@ $dbpagamentos = new pagamentos($db);
 
 if ($id_rp) {
 	$convites = $dbpagamentos->devolveConvites($id_rp);
-	// $equipa_pagamentos = $dbpagamentos->devolveEquipa($id_rp);
+	$equipa_pagamentos = $dbpagamentos->devolveEquipa($id_rp);
 	$extraSessao = $dbpagamentos->devolveExtras($id_rp, 1);
 }
 
