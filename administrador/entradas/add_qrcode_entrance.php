@@ -66,7 +66,7 @@ if ($qrcode) {
 				$id = $db->Insert('presencas', $campos);
 				if ($id > 0) {
 					$db->Insert('logs', array('descricao' => "Inseriu uma entrada de RP via qrcode", 'arr' => json_encode($campos), 'id_admin' => $_SESSION['id_utilizador'], 'tipo' => "Inserção", 'user_agent' => $_SERVER['HTTP_USER_AGENT'], 'ip' => $_SERVER['REMOTE_ADDR']));
-					echo json_encode(array('status' => "success", "client_name" => $rp["nome"], "type" => "Entrada STAFF - " . $rp["bebidas_cartao"] . " bebidas"));
+					echo json_encode(array('status' => "success", "message" => $rp["nome"], "client_name" => $rp["nome"], "type" => "Entrada STAFF - " . $rp["bebidas_cartao"] . " bebidas"));
 					exit;
 				}
 			}
