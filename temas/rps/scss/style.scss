@@ -2006,6 +2006,34 @@ body {
     }
 }
 
+.qrcode-rp-homepage{
+    margin: 20px 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+    .image {
+        width: 100%;
+        img {
+            width: 100%;
+        }
+
+    }
+    .download {
+        display: block;
+        margin:0  auto;
+        background: rgba(242, 242, 242, 0.15);
+        padding: 20px;
+        border: 1px solid #f2f2f2;
+        width: 300px;
+        .link {
+            color: #ee7908;
+            font-size: 13px;
+            margin-top: 20px;
+            display: block;
+        }
+    }
+}
+
 .content .perfil .conta-corrente-homepage {
     display: block;
     margin: 20px 0;

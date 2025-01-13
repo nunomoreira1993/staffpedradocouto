@@ -1,6 +1,0 @@
-entradas caixas
-- caixas
-- valor
-
-Presenças
-- numero de cartão 

@@ -32,7 +32,7 @@ if($result) {
 	}
 }
 
-$query = "DELETE eventos_convites FROM eventos_convites LEFT JOIN eventos ON eventos.id = eventos_convites.id_evento WHERE eventos.data <= '". date ("Y-m-d H:i:s", strtotime("-1 month"))."' OR eventos.id IS NULL ";
+$query = "DELETE eventos_convites FROM eventos_convites LEFT JOIN eventos ON eventos.id = eventos_convites.id_evento WHERE eventos.data <= '". date ("Y-m-d H:i:s", strtotime("-2 month"))."' OR eventos.id IS NULL ";
 $result = $db->query($query);
 
 $query = "OPTIMIZE TABLE eventos_convites; ";
@@ -43,6 +43,13 @@ $query = "DELETE FROM logs  WHERE logs.data <= '". date ("Y-m-d H:i:s", strtotim
 $result = $db->query($query);
 
 $query = "OPTIMIZE TABLE logs ";
+$result = $db->query($query);
+
+#presencas
+$query = "DELETE FROM presencas WHERE presencas.data_entrada <= '". date ("Y-m-d H:i:s", strtotime("-2 months"))."'";
+$result = $db->query($query);
+
+$query = "OPTIMIZE TABLE presencas ";
 $result = $db->query($query);
 
 

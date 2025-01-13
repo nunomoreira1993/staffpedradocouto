@@ -1,8 +1,12 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/lib/config.php";
 $qrcode = $_REQUEST['qrcode'];
+
 require_once($_SERVER['DOCUMENT_ROOT'] . '/administrador/eventos/evento.obj.php');
 $dbevento = new evento($db);
+
+require_once($_SERVER['DOCUMENT_ROOT'] . '/administrador/rps/rps.obj.php');
+$dbrps = new rps($db);
 
 if ($qrcode) {
 
@@ -33,17 +37,51 @@ if ($qrcode) {
         }
     }
 
+    if (date('H') < 14) {
+        $data = date('Y-m-d', strtotime('-1 day'));
+    } else {
+        $data = date('Y-m-d');
+    }
+
+
+	$pos = strpos($qrcode, "rp_" );
+	if ($pos !== false) {
+    	$rp = $dbrps->getRPByQRCode($qrcode);
+		$id_rp = intval($rp["id"]);
+		if ($id_rp > 0) {
+			$query = "SELECT * FROM presencas WHERE id_rp = " . $id_rp . " AND data_evento = '" . $data . "'";
+			$res = $db->query($query);
+
+			if(!empty($res[0])) {
+				echo json_encode(array('status' => "error", "message" => "O RP " . $rp["nome"] . " já deu entrada ás " . $res[0]["data_entrada"] . " ."));
+				exit;
+			}
+			else {
+				$campos['data_entrada'] = date('Y-m-d H:i:s');
+				$campos['data_evento'] = $data;
+				$campos['id_rp'] = $id_rp;
+				$campos['numero_cartao'] = 1;
+				$campos['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+				$campos['ip'] = $_SERVER['REMOTE_ADDR'];
+				$id = $db->Insert('presencas', $campos);
+				if ($id > 0) {
+					$db->Insert('logs', array('descricao' => "Inseriu uma entrada de RP via qrcode", 'arr' => json_encode($campos), 'id_admin' => $_SESSION['id_utilizador'], 'tipo' => "Inserção", 'user_agent' => $_SERVER['HTTP_USER_AGENT'], 'ip' => $_SERVER['REMOTE_ADDR']));
+					echo json_encode(array('status' => "success", "client_name" => $rp["nome"], "type" => "Entrada STAFF - " . $rp["bebidas_cartao"] . " bebidas"));
+					exit;
+				}
+			}
+		} else {
+			echo json_encode(array('status' => "error", "message" => "Ocorreu um problema a inserir a entrada (RP não encontrado)."));
+			exit;
+		}
+
+	}
+
     if (!preg_match('/^[0-9]+$/', $qrcode)) {
         $arr["status"] = "error";
         $arr["message"] = "QR Code inválido.";
         echo json_encode($arr);
         exit;
-    }
-
-    if (date('H') < 14) {
-        $data = date('Y-m-d', strtotime('-1 day'));
-    } else {
-        $data = date('Y-m-d');
     }
 
     if (empty($_SESSION['id_utilizador'])) {

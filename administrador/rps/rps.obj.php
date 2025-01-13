@@ -42,6 +42,11 @@ class rps {
 		$_SESSION['id_rp'] = $res[0]['id'];
 		return $res;
 	}
+	function getRPByQRCode($qrcode) {
+		$query = "SELECT * FROM rps WHERE rps.qrcode = '$qrcode'";
+		$res = $this->db->query($query);
+		return $res[0];
+	}
 	function listaCargos()
 	{
 		$query = "SELECT * FROM rps_cargos ORDER BY id ASC";
