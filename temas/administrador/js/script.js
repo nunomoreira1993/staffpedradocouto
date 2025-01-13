@@ -1398,7 +1398,7 @@ function openPopupQRCode(status, message = "", type = "", bebidas = "") {
             if(status == 2) {
                 $('#error_success').removeClass("success");
                 $('#error_success').addClass("error");
-                $('.error .mensagem').html(message);
+                $('.erro .mensagem').html(message);
             }
             else {
 
