@@ -12,12 +12,11 @@ if($_GET['id']){
 }
 
 $permissao = $dbrp->permissao();
-if ($permissao == 0) {
-	header('Location: /rp/index.php');
-}
+
 
 if($_POST){
 	$id_rp = $_SESSION['id_rp'];
+
 	if($_POST['input']){
 		$data_evento = $_POST['data_evento'];
 		if(empty($data_evento)){
@@ -32,6 +31,24 @@ if($_POST){
 				}
 			}
 		}
+
+		$devolveCartoesEventoData = $dbrp->devolveCartoesEventoData($data_evento);
+
+		if($devolveCartoesEventoData == 0) {
+			if ($permissao == 0) {
+				$_SESSION['erro'] = "Sem permissões para gerar cartões sem consumo para esta data";
+			}
+		}
+		else {
+			if ($permissao == 0) {
+				$cartoes_sem_consumo = $dbrp->devolveCartoesSemConsumo(false, $data_evento);
+
+				if((count($_POST['input']) + count($cartoes_sem_consumo) ) > $devolveCartoesEventoData){
+					$_SESSION['erro'] = "O número de cartões sem consumo para este evento já foi atingido. Não é possível adicionar mais do que $devolveCartoesEventoData.";
+				}
+			}
+		}
+
 
 		if (empty($_SESSION['erro'])) {
 			foreach ($_POST['input'] as $inputs) {

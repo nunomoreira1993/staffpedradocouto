@@ -28,16 +28,11 @@ $permissao = $dbrp->permissao();
             <span class="icon"><img src="/temas/rps/imagens/adicionar.svg" /></span>
             <span class="nome">Eventos</span>
         </a>
-        <?php
-        if ($permissao) {
-            ?>
-            <a href="/rp/index.php?pg=cartoes_sem_consumo">
-                <span class="icon"><img src="/temas/rps/imagens/adicionar.svg" /></span>
-                <span class="nome">Cartões sem consumo</span>
-            </a>
-        <?php
-        }
-        ?>
+		<a href="/rp/index.php?pg=cartoes_sem_consumo">
+			<span class="icon"><img src="/temas/rps/imagens/adicionar.svg" /></span>
+			<span class="nome">Cartões sem consumo</span>
+		</a>
+
 
         <a href="/rp/index.php?pg=cartoes_consumo_obrigatorio">
             <span class="icon"><img src="/temas/rps/imagens/adicionar.svg" /></span>

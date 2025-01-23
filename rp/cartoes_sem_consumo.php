@@ -2,10 +2,6 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/rp/rp.obj.php');
 $dbrp = new rp($db, $_SESSION['id_rp']);
 
-$permissao = $dbrp->permissao();
-if ($permissao == 0) {
-	header('Location: /rp/index.php');
-}
 $cartoes_consumo_obrigatorio = $dbrp->devolveCartoesSemConsumo();
 if ($_GET['apagar'] && $_GET['id']) {
 	$cartao = $dbrp->devolveCartaoSemConsumo(intval($_GET['id']));

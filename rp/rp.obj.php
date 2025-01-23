@@ -171,6 +171,15 @@ class rp {
 
 	}
 
+	function devolveCartoesEventoData($data = "") {
+
+		if($data){
+			$query = "SELECT cartoes_sem_consumo FROM eventos WHERE data = '".$data."'";
+			$eventos = $this->db->query($query);
+			return $eventos[0]["cartoes_sem_consumo"];
+		}
+	}
+
 	function listaEventosRP(){
 
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/administrador/pagamentos/pagamentos.obj.php');
