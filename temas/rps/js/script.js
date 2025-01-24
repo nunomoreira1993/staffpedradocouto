@@ -148,7 +148,7 @@ var form = {
                 'global': false,
                 'data': {
                     "i": $('form').attr('data-incremento'),
-                    "sem_consumo": $('form').hasClass('sem-consumo') ? 1 : 0,
+                    "sem_consumo": ($("input[name='input[0][bebidas]']").length > 0) ? ($('form').hasClass('sem-consumo') ? 1 : 0) : 0,
                 },
                 'type': "GET",
                 'url': "/rp/ajax_adicionar_input.php",

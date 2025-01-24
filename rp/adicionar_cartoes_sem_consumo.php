@@ -55,7 +55,14 @@ if($_POST){
 				$campos['data_evento'] = $data_evento;
 				$campos['id_rp'] = $id_rp;
 				$campos['nome'] = $inputs['nome'];
-				$campos['bebidas'] = $inputs['bebidas'];
+
+				if ($permissao == 0) {
+					$campos['bebidas'] = 0;
+				}
+				else {
+					$campos['bebidas'] = $inputs['bebidas'];
+				}
+
 				if ($_GET['id']) {
 					$db->Update('rps_cartoes_sem_consumo', $campos, 'id=' . intval($_GET['id']));
 					$_SESSION['sucesso'] = "A password foi alterada.";
@@ -119,14 +126,20 @@ else{
 						<input name="input[<?php echo $k; ?>][nome]" value="<?php echo $campo['nome']; ?>" type="text" required="required" />
 					</div>
 				</div>
-				<div class="inputs">
-					<div class="label">
-						Número de Bebidas
+				<?php
+				if ($permissao == 1) {
+				?>
+					<div class="inputs">
+						<div class="label">
+							Número de Bebidas
+						</div>
+						<div class="input">
+							<input name="input[<?php echo $k; ?>][bebidas]" value="<?php echo $campo['bebidas']; ?>" type="number" min="0" max="4" />
+						</div>
 					</div>
-					<div class="input">
-						<input name="input[<?php echo $k; ?>][bebidas]" value="<?php echo $campo['bebidas']; ?>" type="number" min="0" max="4" />
-					</div>
-				</div>
+				<?php
+				}
+				?>
 			</div>
 
 			<?php
