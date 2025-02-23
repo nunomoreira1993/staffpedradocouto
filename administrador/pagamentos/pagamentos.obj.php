@@ -2,6 +2,8 @@
 class pagamentos
 {
 	protected $datas_rp = array();
+	protected $faltas_rp = array();
+	protected $faltas_euros = array();
 
     function __construct($db)
     {
@@ -78,12 +80,16 @@ class pagamentos
 
     function listaEventosRP($id_rp, $data_evento)
     {
-
         $query = "SELECT sum(rps_entradas.quantidade) as quantidade FROM rps_entradas INNER JOIN rps ON rps.id = rps_entradas.id_rp AND rps.comissao_guest = 1  WHERE  rps_entradas.id_rp = " . $id_rp . " AND rps_entradas.data_evento = '" . $data_evento . "' GROUP BY rps_entradas.data_evento DESC";
         $eventoRP = $this->db->query($query);
         if ($eventoRP[0]['quantidade'] > 0) {
             $eventos_return['descricao'] = "<b>" . $data_evento . "</b>: " . intval($eventoRP[0]['quantidade']) . " entradas";
             $eventos_return['comissao'] = $this->converteEntradasToEuro($eventoRP[0]['quantidade'], $id_rp);
+
+			if(in_array($data_evento,  $this->faltas_rp) && $eventos_return['comissao'] > 0) {
+				$this->faltas_euros[$data_evento] += $eventos_return['comissao'];
+			}
+
             return $eventos_return;
         }
     }
@@ -155,18 +161,57 @@ class pagamentos
 			return $res_entradas;
         }
     }
+
+	function getPenalties($absences) {
+		$penalties = array();
+
+		for ($i = 1; $i < count($absences); $i++) {
+			$current_date = new DateTime($absences[$i]);
+			$previous_date = new DateTime($absences[$i-1]);
+
+			$interval = $previous_date->diff($current_date)->days;
+
+			if ($interval == 7) {
+				$penalties[] = $absences[$i];
+			}
+		}
+
+		return $penalties;
+	}
+
+	function devolveFaltas($id_rp, $data_minima)  {
+		$query = "SELECT eventos.data FROM `eventos` LEFT JOIN presencas ON eventos.data = presencas.data_evento AND presencas.id_rp = " . $id_rp . " WHERE eventos.data >= '" . $data_minima . "' AND presencas.data_evento IS NULL ORDER BY eventos.data ASC";
+		$res = $this->db->query($query);
+
+		$res_columns = array();
+
+		if(is_array($res) && count($res) > 0) {
+			$res_columns = array_column($res, 'data');
+			$res_columns = $this->getPenalties($res_columns);
+		}
+
+		$this->faltas_rp = $res_columns;
+
+		return $res_columns;
+	}
+
     function devolvePagamento($id_rp)
     {
         if ($id_rp > 0) {
             $divida = $this->devolveDividaRP($id_rp);
 
-            $garrafas = $this->devolveComissaoGarrafas($id_rp);
-
             $datas = $this->devolveDatasParaPagamento($id_rp);
+
+			if($datas) {
+				$faltas = $this->devolveFaltas($id_rp, $datas[count($datas)-1]['data_evento']);
+			}
+
+			$garrafas = $this->devolveComissaoGarrafas($id_rp);
 
             $equipa_pagamentos = $this->devolveEquipa($id_rp);
 
-            $return = array();
+
+			$return = array();
 
             if ($equipa_pagamentos['total'] > 0) {
                 $return['equipa']['comissao'] = $equipa_pagamentos["total"];
@@ -225,9 +270,13 @@ class pagamentos
             $return['divida'] = $divida;
         }
 
+		$faltas_merged =  array_merge(array_fill_keys($this->faltas_rp, 0), $this->faltas_euros);
+
+		$return["faltas"] = $faltas_merged;
+
         $return['extras'] = $this->devolveValoresExtras($id_rp);
 
-        $return['total'] = $return['guest']['comissao'] + $return['equipa']['comissao'] + $return['privados']['comissao'] + $return['garrafas']['comissao'] - $return['convites']['comissao'] - $return['atrasos']['comissao'] + $return['extras']['total'] + ($return['divida']);
+        $return['total'] = $return['guest']['comissao'] + $return['equipa']['comissao'] + $return['privados']['comissao'] + $return['garrafas']['comissao'] - $return['convites']['comissao'] - $return['atrasos']['comissao'] + $return['extras']['total'] + ($return['divida']) - array_sum($this->faltas_euros);
 
         return $return;
     }
@@ -311,6 +360,7 @@ class pagamentos
                         } else {
                             $resultado['lista'][$data['data_evento']]['total']['total_pagar'] += $resultado['lista'][$data['data_evento']]['rps'][$i]['total_chefe'] = ($entradas[0]['quantidade'] * 0.5);
                         }
+
 						$resultado['lista'][$data['data_evento']]['total']['quantidade'] += $entradas[0]['quantidade'];
 						// $resultado['lista'][$data['data_evento']]['total']['total_pagar'] += $resultado['lista'][$data['data_evento']]['rps'][$i]['total_rp'] = ($entradas[0]['quantidade'] * 1);
                     }
@@ -329,6 +379,7 @@ class pagamentos
                         // $resultado['lista'][$data['data_evento']]['total']['total_pagar'] += $privados['total_cartoes'] * 0.5;
                         $resultado['lista'][$data['data_evento']]['total']['total_pagar'] += ($resultado['lista'][$data['data_evento']]['total']['total_privados_chefe'] += $privados['total_cartoes'] * 0.5);
                         $resultado['lista'][$data['data_evento']]['rps'][$i]['total_privados_chefe'] += $privados['total_cartoes'] * 0.5;
+
                     }
 
                     if($privados['total'] > 0  || $entradas[0]['quantidade']) {
@@ -344,6 +395,10 @@ class pagamentos
                     $resultado['lista'][$data['data_evento']]['total']['total_pagar'] += $resultado['lista'][$data['data_evento']]['total']['bonus'] = 30;
                 }
                 $resultado['total'] += $resultado['lista'][$data['data_evento']]['total']['total_pagar'];
+
+				if(in_array($data['data_evento'],  $this->faltas_rp) && $resultado['lista'][$data['data_evento']]['total']['total_pagar'] > 0) {
+					$this->faltas_euros[$data['data_evento']] += $resultado['lista'][$data['data_evento']]['total']['total_pagar'];
+				}
             }
         }
 
@@ -401,6 +456,11 @@ class pagamentos
             $return['total'] = ($resultado2[0]['total']);
             $return['total_cartoes'] = ($resultado2[0]['total_cartoes']);
 
+
+			if(in_array($data_evento,  $this->faltas_rp) && $return['comissao'] > 0) {
+				$this->faltas_euros[$data_evento] += $return['comissao'];
+			}
+
             return $return;
         }
     }
@@ -411,8 +471,13 @@ class pagamentos
         if ($resultado) {
             foreach ($resultado as $k => $res) {
 
+				if(in_array($res['data_evento'],  $this->faltas_rp) && $res['quantidade'] > 0) {
+					$this->faltas_euros[$res['data_evento']] += $res['quantidade'] * 5;
+				}
+
                 $return[$k]['comissao'] = $res['quantidade'] * 5;
                 $return[$k]['descricao'] .= "<b>" . $res['data_evento'] . "</b>: " . intval($res['quantidade']) . " garrafas";
+
             }
             return $return;
         }

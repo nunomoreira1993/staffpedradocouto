@@ -133,6 +133,33 @@ if ($pagamento['convites']) {
     </div>
     <?php
 }
+if ($pagamento['faltas']) {
+
+    ?>
+
+    <div class="linha debito">
+        <span class="topo">
+            <span class="nome">
+                Penalização faltas
+            </span>
+            <span class="valor">
+                <?php echo euro(array_sum($pagamento['faltas'])); ?>
+            </span>
+        </span>
+        <span class="descricao">
+			<?php
+			foreach ($pagamento['faltas'] as $data_falta => $falta) {
+				?>
+				<b><?php echo $data_falta; ?></b> - <?php echo euro($falta); ?>
+				<br/>
+				<?php
+			}
+			?>
+
+        </span>
+    </div>
+    <?php
+}
 if ($pagamento['extras']) {
     foreach ($pagamento['extras']['items'] as $items) {
         ?>

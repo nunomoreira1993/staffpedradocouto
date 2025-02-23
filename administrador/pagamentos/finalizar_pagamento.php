@@ -2,8 +2,8 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . "/lib/config.php";
 
 if (empty($_SESSION['id_utilizador'])) {
-    header('Location:/index.php');
-    exit;
+	header('Location:/index.php');
+	exit;
 }
 
 $id_rp = intval($_GET['id_rp']);
@@ -12,107 +12,120 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/administrador/pagamentos/pagamentos.o
 $dbpagamentos = new pagamentos($db);
 $pagamento = $dbpagamentos->devolvePagamento($id_rp);
 if (date('H') < 14) {
-    $data_evento = date('Y-m-d', strtotime('-1 day'));
+	$data_evento = date('Y-m-d', strtotime('-1 day'));
 } else {
-    $data_evento = date('Y-m-d');
+	$data_evento = date('Y-m-d');
 }
 
 if ($dbpagamentos->devolveDiferencaTotalCaixa($data_evento) < $pagamento['total'] && $dbpagamentos->descontaValorCaixa() == 1) {
-    $_SESSION['erro'] = "O total de pagamento é superior ao valor de caixa. Por favor adicione mais fundos na caixa para efectuar o pagamento.";
-    header('Location: /administrador/index.php?pg=pagamentos');
-    exit;
+	$_SESSION['erro'] = "O total de pagamento é superior ao valor de caixa. Por favor adicione mais fundos na caixa para efectuar o pagamento.";
+	header('Location: /administrador/index.php?pg=pagamentos');
+	exit;
 }
-if($id_rp > 0){
-    $datas_pagamento = $dbpagamentos->devolveDatasParaPagamento($id_rp);
-    // $equipa_pagamentos = $dbpagamentos->devolveEquipa($id_rp);
+if ($id_rp > 0) {
+	$datas_pagamento = $dbpagamentos->devolveDatasParaPagamento($id_rp);
+	// $equipa_pagamentos = $dbpagamentos->devolveEquipa($id_rp);
 }
 
-if ( ( !empty($datas_pagamento) ||  !empty($equipa_pagamentos))  || $id_rp == 0) {
+if ((!empty($datas_pagamento) ||  !empty($equipa_pagamentos))  || $id_rp == 0) {
 
-    $campo_geral['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
-    $campo_geral['ip'] = $_SERVER['REMOTE_ADDR'];
-    $campo_geral['total'] = $pagamento['total'];
-    $campo_geral['data'] = date('Y-m-d H:i:s');
-    $campo_geral['data_evento'] = $data_evento;
-    $campo_geral['id_rp'] = $id_rp;
-    $campo_geral['id_administrador'] = $_SESSION['id_utilizador'];
-    $campo_geral['nome'] = $pagamento['extras']['items'][0]['nome'];
-    $campo_geral['tipo'] = $pagamento['extras']['items'][0]['tipo'];
-    $campo_geral['pagamento_caixa'] = $dbpagamentos->descontaValorCaixa();
+	$campo_geral['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+	$campo_geral['ip'] = $_SERVER['REMOTE_ADDR'];
+	$campo_geral['total'] = $pagamento['total'];
+	$campo_geral['data'] = date('Y-m-d H:i:s');
+	$campo_geral['data_evento'] = $data_evento;
+	$campo_geral['id_rp'] = $id_rp;
+	$campo_geral['id_administrador'] = $_SESSION['id_utilizador'];
+	$campo_geral['nome'] = $pagamento['extras']['items'][0]['nome'];
+	$campo_geral['tipo'] = $pagamento['extras']['items'][0]['tipo'];
+	$campo_geral['pagamento_caixa'] = $dbpagamentos->descontaValorCaixa();
 
-    $id_conta_corrente = $db->Insert('conta_corrente', $campo_geral);
+	$id_conta_corrente = $db->Insert('conta_corrente', $campo_geral);
 
-    if ($id_conta_corrente) {
-        if ($id_rp) {
-            if ($pagamento['guest']) {
-                unset($campo);
-                $campo['id_conta_corrente'] = $id_conta_corrente;
-                $campo["valor"] = $pagamento["guest"]["comissao"];
-                $campo["descricao"] = $pagamento["guest"]["descricao"];
-                $campo["nome"] = "Comissão Guest";
-                $id_conta_corrente_linha = $db->Insert('conta_corrente_linhas', $campo);
-            }
-            if ($pagamento['privados']) {
-                unset($campo);
-                $campo['id_conta_corrente'] = $id_conta_corrente;
-                $campo["valor"] = $pagamento["privados"]["comissao"];
-                $campo["descricao"] = $pagamento["privados"]["descricao"];
-                $campo["nome"] = "Privados";
-                $id_conta_corrente_linha = $db->Insert('conta_corrente_linhas', $campo);
-            }
-            if ($pagamento['equipa']) {
-                unset($campo);
-                $campo['id_conta_corrente'] = $id_conta_corrente;
-                $campo["valor"] = $pagamento["equipa"]["comissao"];
-                $campo["descricao"] = $pagamento["equipa"]["descricao"];
-                $campo["nome"] = "Equipa";
-                $id_conta_corrente_linha = $db->Insert('conta_corrente_linhas', $campo);
-            }
-            if ($pagamento['garrafas']) {
-                unset($campo);
-                $campo['id_conta_corrente'] = $id_conta_corrente;
-                $campo["valor"] = $pagamento["garrafas"]["comissao"];
-                $campo["descricao"] = $pagamento["garrafas"]["descricao"];
-                $campo["nome"] = "Garrafas Bar";
-                $id_conta_corrente_linha = $db->Insert('conta_corrente_linhas', $campo);
-                $paga = $db->Update('venda_garrafas_bar', array('paga' => 1), 'id_rp = ' . $id_rp);
-            }
-            if ($pagamento['atrasos']) {
-                unset($campo);
-                $campo['id_conta_corrente'] = $id_conta_corrente;
-                $campo["valor"] = -$pagamento["atrasos"]["comissao"];
-                $campo["descricao"] = $pagamento["atrasos"]["descricao"];
-                $campo["nome"] = "Atraso";
-                $id_conta_corrente_linha = $db->Insert('conta_corrente_linhas', $campo);
-            }
-            if ($pagamento['convites']) {
-                unset($campo);
-                $campo['id_conta_corrente'] = $id_conta_corrente;
-                $campo["valor"] = -$pagamento["convites"]["comissao"];
-                $campo["descricao"] = $pagamento["convites"]["descricao"];
-                $campo["nome"] = "Penalização convite";
-                $id_conta_corrente_linha = $db->Insert('conta_corrente_linhas', $campo);
-            }
+	if ($id_conta_corrente) {
+		if ($id_rp) {
+			if ($pagamento['guest']) {
+				unset($campo);
+				$campo['id_conta_corrente'] = $id_conta_corrente;
+				$campo["valor"] = $pagamento["guest"]["comissao"];
+				$campo["descricao"] = $pagamento["guest"]["descricao"];
+				$campo["nome"] = "Comissão Guest";
+				$id_conta_corrente_linha = $db->Insert('conta_corrente_linhas', $campo);
+			}
+			if ($pagamento['privados']) {
+				unset($campo);
+				$campo['id_conta_corrente'] = $id_conta_corrente;
+				$campo["valor"] = $pagamento["privados"]["comissao"];
+				$campo["descricao"] = $pagamento["privados"]["descricao"];
+				$campo["nome"] = "Privados";
+				$id_conta_corrente_linha = $db->Insert('conta_corrente_linhas', $campo);
+			}
+			if ($pagamento['equipa']) {
+				unset($campo);
+				$campo['id_conta_corrente'] = $id_conta_corrente;
+				$campo["valor"] = $pagamento["equipa"]["comissao"];
+				$campo["descricao"] = $pagamento["equipa"]["descricao"];
+				$campo["nome"] = "Equipa";
+				$id_conta_corrente_linha = $db->Insert('conta_corrente_linhas', $campo);
+			}
+			if ($pagamento['garrafas']) {
+				unset($campo);
+				$campo['id_conta_corrente'] = $id_conta_corrente;
+				$campo["valor"] = $pagamento["garrafas"]["comissao"];
+				$campo["descricao"] = $pagamento["garrafas"]["descricao"];
+				$campo["nome"] = "Garrafas Bar";
+				$id_conta_corrente_linha = $db->Insert('conta_corrente_linhas', $campo);
+				$paga = $db->Update('venda_garrafas_bar', array('paga' => 1), 'id_rp = ' . $id_rp);
+			}
+			if ($pagamento['atrasos']) {
+				unset($campo);
+				$campo['id_conta_corrente'] = $id_conta_corrente;
+				$campo["valor"] = -$pagamento["atrasos"]["comissao"];
+				$campo["descricao"] = $pagamento["atrasos"]["descricao"];
+				$campo["nome"] = "Atraso";
+				$id_conta_corrente_linha = $db->Insert('conta_corrente_linhas', $campo);
+			}
+			if ($pagamento['convites']) {
+				unset($campo);
+				$campo['id_conta_corrente'] = $id_conta_corrente;
+				$campo["valor"] = -$pagamento["convites"]["comissao"];
+				$campo["descricao"] = $pagamento["convites"]["descricao"];
+				$campo["nome"] = "Penalização convite";
+				$id_conta_corrente_linha = $db->Insert('conta_corrente_linhas', $campo);
+			}
 
-            if ($pagamento['divida']) {
-                unset($campo);
-                $campo['id_conta_corrente'] = $id_conta_corrente;
-                $campo["valor"] = $pagamento["divida"];
-                $campo["nome"] = "Dívida";
-                $id_conta_corrente_linha = $db->Insert('conta_corrente_linhas', $campo);
-            }
-        }
-        if ($pagamento['extras']) {
-            foreach ($pagamento['extras']['items'] as $items) {
-                $campo['id_conta_corrente'] = $id_conta_corrente;
-                $campo["valor"] = $items['valor'];
-                $campo["descricao"] = $items['descricao'];
-                $campo["nome"] = "Extra";
-                $id_conta_corrente_linha = $db->Insert('conta_corrente_linhas', $campo);
-            }
-        }
+			if ($pagamento['divida']) {
+				unset($campo);
+				$campo['id_conta_corrente'] = $id_conta_corrente;
+				$campo["valor"] = $pagamento["divida"];
+				$campo["nome"] = "Dívida";
+				$id_conta_corrente_linha = $db->Insert('conta_corrente_linhas', $campo);
+			}
 
-		if($datas_pagamento) {
+			if ($pagamento['faltas']) {
+				unset($campo);
+				$campo['id_conta_corrente'] = $id_conta_corrente;
+				$campo["valor"] =  array_sum($pagamento['faltas']);
+
+				$campo["descricao"] = "";
+				foreach ($pagamento['faltas'] as $data => $falta) {
+					$campo["descricao"] .= "<b>" . $data . "</b> - " . euro($falta) . "<br />";
+				}
+				$campo["nome"] = "Penalização faltas";
+				$id_conta_corrente_linha = $db->Insert('conta_corrente_linhas', $campo);
+			}
+		}
+		if ($pagamento['extras']) {
+			foreach ($pagamento['extras']['items'] as $items) {
+				$campo['id_conta_corrente'] = $id_conta_corrente;
+				$campo["valor"] = $items['valor'];
+				$campo["descricao"] = $items['descricao'];
+				$campo["nome"] = "Extra";
+				$id_conta_corrente_linha = $db->Insert('conta_corrente_linhas', $campo);
+			}
+		}
+
+		if ($datas_pagamento) {
 			foreach ($datas_pagamento as $data) {
 				unset($campo_eventos);
 				$campo_eventos['id_rp'] = $id_rp;
@@ -122,9 +135,9 @@ if ( ( !empty($datas_pagamento) ||  !empty($equipa_pagamentos))  || $id_rp == 0)
 			}
 		}
 
-        $dbpagamentos->apagaExtras($id_rp);
+		$dbpagamentos->apagaExtras($id_rp);
 
-        $_SESSION['sucesso'] = "Pagamento registado com sucesso.";
+		$_SESSION['sucesso'] = "Pagamento registado com sucesso.";
 
 		/*
         if ($equipa_pagamentos['rps']) {
@@ -165,15 +178,12 @@ if ( ( !empty($datas_pagamento) ||  !empty($equipa_pagamentos))  || $id_rp == 0)
             }
         }
 		*/
+	} else {
 
-
-
-    } else {
-
-        $_SESSION['erro'] = "Erro ao registar pagamento, o ocurreu um erro.";
-    }
+		$_SESSION['erro'] = "Erro ao registar pagamento, o ocurreu um erro.";
+	}
 } else {
-    $_SESSION['erro'] = "Erro ao registar pagamento, o pagamento já foi efectuado.";
+	$_SESSION['erro'] = "Erro ao registar pagamento, o pagamento já foi efectuado.";
 }
 
 
