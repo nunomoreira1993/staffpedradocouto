@@ -8,6 +8,9 @@ class rps {
 	function getIdChefeEquipa() {
 		return self::id_chefe_equipa;
 	}
+	function genCardNumberRP($id) {
+		return date("Ymdhis").$id;
+	}
 	function verificaRP($username, $password) {
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/validacao/validacao.obj.php');
 		$dbvalidacao = new validacao($db);
@@ -496,6 +499,20 @@ class rps {
 		else{
 			return 0;
 		}
+	}
+	function devolvePresencaRP ($id_rp){
+
+		if (date('H') < 14) {
+			$data = date('Y-m-d', strtotime('-1 day'));
+		} else {
+			$data = date('Y-m-d');
+		}
+
+		$query = "SELECT * FROM presencas  WHERE presencas.id_rp = '".$id_rp."' AND presencas.data_evento= '". $data."'";
+		$res = $this->db->query($query);
+
+		return $res[0];
+
 	}
 	function listaCartoesData($data) {
 

@@ -10,6 +10,10 @@ if (empty($_SESSION['id_utilizador'])) {
 $id_rp = intval($_GET['id_rp']);
 $numero = intval($_GET['numero']);
 
+if($numero == 0){
+	$numero = $dbrps->genCardNumberRP( $id_rp);
+}
+
 if ($id_rp > 0 && $numero > 0 && $dbrps->verificaPresencaRP( $id_rp) == 0) {
     $campos['data_entrada'] = date('Y-m-d H:i:s');
 
@@ -18,9 +22,9 @@ if ($id_rp > 0 && $numero > 0 && $dbrps->verificaPresencaRP( $id_rp) == 0) {
     } else {
         $data = date('Y-m-d');
     }
-    
+
     $campos['data_evento'] = $data;
-    $campos[ 'numero_cartao'] = $numero;
+    $campos['numero_cartao'] = $numero;
     $campos['id_rp'] = $id_rp;
     $campos['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
     $campos['ip'] = $_SERVER['REMOTE_ADDR'];

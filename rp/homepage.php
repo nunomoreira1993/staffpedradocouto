@@ -41,6 +41,14 @@ $pagamento = $dbpagamentos->devolvePagamento($_SESSION['id_rp']);
 			<span class="link">Download QR Code</span>
 		</a>
 	</div>
+
+	<div class="cartao-consumo-container">
+		<a href="#" class="cartao-consumo-homepage">Cartão Consumo</a>
+
+		<div class="card">
+		</div>
+	</div>
+
 	<div class="conta-corrente-homepage">
 		<div class="saldo">
 			<span class="titulo">

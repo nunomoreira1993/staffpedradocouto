@@ -1425,6 +1425,18 @@ body {
   background: #6f42c1;
   color: #ffffff;
 }
+.content .rps a .presenca_paga {
+  color: #fff;
+  background: #000000;
+  margin-top: auto;
+  text-align: center;
+  width: 100%;
+  padding: 20px 0;
+}
+.content .rps a .presenca_paga:hover {
+  background: #70c247;
+  color: #ffffff;
+}
 .content .rps a .efectuar_pagamento {
   background: #6f42c1;
   color: #ffffff;
@@ -1587,16 +1599,8 @@ body {
 .fancybox-content.entrada-ajax.with-qrcode .mensagem {
   color: #ffffff;
   text-align: center;
-  padding: 10px 50px;
+  padding: 20px 50px;
   line-height: 27px;
-  width: 100%;
-}
-.fancybox-content.entrada-ajax.with-qrcode .bebidas {
-  color: #ffffff;
-  text-align: center;
-  padding: 10px 50px;
-  line-height: 27px;
-  width: 100%;
 }
 .fancybox-content.entrada-ajax .fancybox-close-small {
   padding: 0;
@@ -3170,8 +3174,7 @@ body {
 .login-pin .fundo-formulario .formulario .mensagem {
   color: #fff;
   text-align: center;
-  max-width: 100%;
-  width: 100%;
+  max-width: 400px;
   margin: 0 auto;
   display: block;
   padding-bottom: 10px;

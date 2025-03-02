@@ -60,7 +60,7 @@ if ($qrcode) {
 				$campos['data_entrada'] = date('Y-m-d H:i:s');
 				$campos['data_evento'] = $data;
 				$campos['id_rp'] = $id_rp;
-				$campos['numero_cartao'] = 1;
+				$campos['numero_cartao'] = $dbrps->genCardNumberRP( $id_rp);
 				$campos['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
 				$campos['ip'] = $_SERVER['REMOTE_ADDR'];
 				$id = $db->Insert('presencas', $campos);

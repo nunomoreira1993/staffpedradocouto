@@ -93,6 +93,40 @@ $(function () {
             return false;
         });
     }
+    if ($('.cartao-consumo-homepage').length > 0) {
+        $('.cartao-consumo-homepage').on('click', function () {
+			ajaxRps = function () {
+				var html = null;
+				$.ajax({
+					'async': false,
+					'global': false,
+					'type': "GET",
+					'url': "/rp/cartao_staff.php",
+					'dataType': "html",
+					'success': function success(data) {
+						html = data;
+					}
+				});
+				return html;
+			}();
+
+			if (ajaxRps) {
+				$(this).parent().find('.card').addClass("active").html(ajaxRps).find(".back").on("click", function(){
+					$(this).parent().removeClass("active");
+				});
+			}
+			else {
+				swal({
+					title: "Erro!",
+					text: "Ainda não tem cartão de consumo disponível. É obrigatório dar entrada no evento para poder aceder ao cartão de consumo.",
+					icon: "error",
+					button: "Ok",
+				});
+			}
+
+            return false;
+        });
+    }
     if ($('.consumo-obrigatorio').length > 0) {
         form.init('consumo-obrigatorio');
     }

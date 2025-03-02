@@ -1528,6 +1528,20 @@ body {
         }
       }
 
+      .presenca_paga {
+        color: #fff;
+        background: #000000;
+        margin-top: auto;
+        text-align: center;
+        width: 100%;
+        padding: 20px 0;
+
+        &:hover {
+          background: #70c247;
+          color: #ffffff;
+        }
+      }
+
       .efectuar_pagamento {
         background: #6f42c1;
         color: #ffffff;

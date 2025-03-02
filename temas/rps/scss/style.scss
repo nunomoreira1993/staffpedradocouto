@@ -2006,6 +2006,68 @@ body {
     }
 }
 
+.cartao-consumo-container{
+	margin: 20px 0;
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	.cartao-consumo-homepage{
+		margin: 0 auto;
+		max-width: 300px;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		border-radius: 10px;
+		background: #ee7908;
+		height: 40px;
+		color:#FFFFFF;
+	}
+	.card {
+		&.active {
+			display: flex;
+		}
+		z-index: 1;
+		width: 100vw;
+		height: 100vh;
+		position: fixed;
+		top:0;
+		left:0;
+		background-color: #FFFFFF;
+		display: none;
+		align-items: center;
+		justify-content: center;
+		.back {
+			top:30px;
+			left:5%;
+			position: absolute;
+			height: 30px;
+			display: block;
+		}
+		.barcode {
+			position: relative;
+			.pago {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(221, 254, 119, 0.8);
+				display: block;
+				font-size: 98px;
+				color:green;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			transform: rotate(90deg);
+			img {
+				width: 80vh;
+			}
+		}
+
+	}
+}
+
 .qrcode-rp-homepage{
     margin: 20px 0;
     display: block;

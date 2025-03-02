@@ -902,19 +902,127 @@ var pagamentos = {
     },
     pagamentos_presenca: function pagamentos_presenca() {
         $('.content .rps a').on('click', function () {
-            $.fancybox.open({
-                src: "/administrador/pagamentos/ajax/adicionar_entrada_rp.ajax.php?id=" + $(this).data('id'),
-                type: 'ajax',
-                toolbar: false,
-                touch: {
-                    vertical: false,
-                    horizontal: false
-                },
-                smallBtn: true,
-                afterShow: function afterShow(instance, current) {
-                    pagamentos.acao();
-                }
-            });
+
+			var id_rp = $(this).data('id');
+
+			if($(this).find('.presenca_confirmada').length > 0) {
+				swal({
+					title: "Cartão Pago",
+					text: "Deseja mesmo definir este cartão como pago?",
+					icon: "warning",
+					buttons: true,
+					dangerMode: true
+				}).then(function (willDelete) {
+					if (willDelete) {
+						ajaxRps = function () {
+							var html = null;
+							$.ajax({
+								'async': false,
+								'global': false,
+								'data': {
+									"id_rp": id_rp
+								},
+								'type': "GET",
+								'url': "/administrador/pagamentos/ajax/pagar_presenca.ajax.php",
+								'dataType': "json",
+								'success': function success(data) {
+									if (data.sucesso == 1) {
+										pagamentos.presencas();
+										swal({
+											title: "Sucesso!",
+											text: "Cartão definido com PAGO.",
+											icon: "success",
+											button: "Ok"
+										});
+									} else if (data.erro == 1) {
+										swal({
+											title: "Erro!",
+											text: "Ocorreu um erro ao tentar definir cartão como PAGO.",
+											icon: "error",
+											button: "Ok"
+										});
+									}
+								},
+								'error': function error(_error) {
+									console.log(_error.statusText);
+									swal({
+										title: "Erro!",
+										text: "Ocorreu um erro ao tentar definir cartão como PAGO.",
+										icon: "error",
+										button: "Ok"
+									});
+								}
+							});
+							return html;
+						}();
+					}
+				});
+			}
+			else if($(this).find('.pagamento_confirmado').length > 0) {
+				return false;
+			}
+			else {
+
+				ajaxRps = function () {
+					var html = null;
+					$.ajax({
+						'async': false,
+						'global': false,
+						'data': {
+							"id_rp": id_rp
+						},
+						'type': "GET",
+						'url': "/administrador/pagamentos/ajax/adicionar_presenca.ajax.php",
+						'dataType': "json",
+						'success': function success(data) {
+							if (data.sucesso == 1) {
+								pagamentos.presencas();
+								swal({
+									title: "Sucesso!",
+									text: "Entrada registada com sucesso.",
+									icon: "success",
+									button: "Ok"
+								});
+							} else if (data.erro == 1) {
+								swal({
+									title: "Erro!",
+									text: "Ocorreu um erro ao tentar gerar o cartão de consumo.",
+									icon: "error",
+									button: "Ok"
+								});
+							}
+						},
+						'error': function error(_error) {
+							console.log(_error.statusText);
+							swal({
+								title: "Erro!",
+								text: "Ocorreu um erro ao tentar gerar o cartão.",
+								icon: "error",
+								button: "Ok"
+							});
+						}
+					});
+					return html;
+				}();
+
+				/** BEFORE AUTOGENERATE CARD NUMBER
+					$.fancybox.open({
+						src: "/administrador/pagamentos/ajax/adicionar_entrada_rp.ajax.php?id=" + $(this).data('id'),
+						type: 'ajax',
+						toolbar: false,
+						touch: {
+							vertical: false,
+							horizontal: false
+						},
+						smallBtn: true,
+						afterShow: function afterShow(instance, current) {
+							pagamentos.acao();
+						}
+					});
+				*/
+			}
+			return false;
+
 
 
         });
@@ -1246,10 +1354,7 @@ var privados = {
         privados.pagamento();
     },
     pagamento: function pagamento() {
-
-
         $('.conteudo .content .table-responsive table tbody tr td .payment').on('click', function () {
-
             var id = $(this).attr('data-id');
             var pago = $(this).attr('data-pago');
             var $this = $(this);

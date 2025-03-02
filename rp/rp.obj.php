@@ -290,4 +290,16 @@ class rp {
 		$res = $this->db->query($query);
 		return $res;
 	}
+	function devolveEntrada() {
+		if (date('H') < 14) {
+            $data_evento = date('Y-m-d', strtotime('-1 day'));
+        } else {
+            $data_evento = date('Y-m-d');
+        }
+
+		$sql = "SELECT numero_cartao, pago FROM `presencas` WHERE id_rp  = '" . $this->rp . "' AND data_evento = '" . $data_evento . "'";
+		$res = $this->db->query($sql);
+
+		return $res[0];
+	}
 }
