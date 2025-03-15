@@ -6,6 +6,17 @@ class evento {
 	function devolveEvento($id){
 		$query ="SELECT * FROM eventos WHERE eventos.id = '$id'";
 		$res = $this->db->query($query);
+
+		$query ="SELECT * FROM eventos_tipos_bilhetes WHERE eventos_tipos_bilhetes.id_evento = '$id'";
+		$res1 = $this->db->query($query);
+		if($res1){
+			foreach($res1 as $k => $row){
+				$res[0]["tipo_bilhete"]["bilhete"][$k] = $row["nome"];
+				$res[0]["tipo_bilhete"]["preco"][$k] = $row["preco"];
+				$res[0]["tipo_bilhete"]["stock"][$k] = $row["lotacao"];
+			}
+		}
+
 		return $res[0];
 	}
 	function listaEventos($filtros = array(), $limit = ""){

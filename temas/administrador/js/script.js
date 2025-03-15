@@ -132,6 +132,10 @@ $(function () {
         privados.init();
     }
 
+    if ($('.conteudo .content form .input-grupo .group-tickets').length > 0) {
+        input_type.typeticket();
+    }
+
     if ($('.conteudo .content form .input-grupo .staff .adicionar').length > 0) {
         input_type.rp.init();
     }
@@ -189,6 +193,95 @@ $(function () {
 	}
 });
 var input_type = {
+	typeticket_toggleStockVisibility() {
+		const stockInput = document.querySelector('#input-stock');
+		const bodyTickets = document.querySelectorAll('.body-ticket');
+		const headTickets = document.querySelector('.head-tickets');
+
+
+		// Verificar se o campo "Stock" tem valor
+		const stockValue = stockInput.value.trim();
+
+		// Verificar se qualquer input de tipo_bilhete[bilhete] tem valor
+		const tipoBilheteHasValue = Array.from(document.querySelectorAll('input[name="tipo_bilhete[stock][]"]')).some(input => input.value.trim() !== '');
+
+		stockInput.closest('.input-grupo').classList.remove("hidden");
+		headTickets.querySelector(".label:nth-child(3)").classList.remove('hidden');
+		document.querySelectorAll(".body-ticket .input:nth-child(3)").forEach(input => input.classList.remove("hidden"));
+
+		if(tipoBilheteHasValue) {
+		  stockInput.closest('.input-grupo').classList.add("hidden");
+		}
+		else  if(stockValue > 0) {
+		  headTickets.querySelector(".label:nth-child(3)").classList.add('hidden');
+		  document.querySelectorAll(".body-ticket .input:nth-child(3)").forEach(input => input.classList.add("hidden"));
+		}
+	},
+	typeticket_actionToggleStockVisibility() {
+		/** STOCK **/
+		const stockInput = document.querySelector('#input-stock');
+
+		// Adicionar eventos para monitorar as mudanças nos inputs
+		stockInput.addEventListener('input', input_type.typeticket_toggleStockVisibility);
+
+		document.querySelectorAll('input[name="tipo_bilhete[stock][]"]').forEach(input => {
+		  input.addEventListener('input', input_type.typeticket_toggleStockVisibility);
+		});
+	},
+	typeticket_remove: function() {
+        // Impede o primeiro botão de remoção de funcionar (não permite remover o primeiro body-ticket)
+        const initialRemoverButton = document.querySelector('.remover');
+        initialRemoverButton.addEventListener('click', function(e) {
+            e.preventDefault();  // Impede a remoção do primeiro body-ticket
+            alert('Você não pode remover o primeiro tipo de bilhete.');
+        });
+		document.querySelectorAll('.remover').forEach(input => {
+			input.addEventListener('click', function() {
+				this.closest('.body-ticket').remove();
+				input_type.typeticket_toggleStockVisibility();
+				input_type.typeticket_actionToggleStockVisibility();
+			});
+		});
+	},
+	typeticket: function () {
+		// Chamar a função inicialmente para definir o estado correto
+		input_type.typeticket_toggleStockVisibility();
+		input_type.typeticket_actionToggleStockVisibility();
+
+		/** CLONE */
+        const addButton = document.querySelector('.add');
+        const groupTickets = document.querySelector('.group-tickets');
+
+        addButton.addEventListener('click', function(e) {
+            e.preventDefault();  // Impede o link de causar um comportamento de navegação
+
+            // Clonar o body-ticket existente
+            const newBodyTicket = document.querySelector('.body-ticket').cloneNode(true);
+
+            // Limpar os campos de input para que fiquem vazios
+            const inputs = newBodyTicket.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.value = '';  // Limpa o valor do input
+            });
+
+            // Colocar a nova body-ticket logo antes do botão "Adicionar outro tipo de bilhete"
+            groupTickets.insertBefore(newBodyTicket, addButton);
+
+			input_type.typeticket_toggleStockVisibility();
+			input_type.typeticket_actionToggleStockVisibility();
+
+			// Adicionar a funcionalidade de remoção ao novo botão de remover
+			const removerButton = newBodyTicket.querySelector('.remover');
+			removerButton.addEventListener('click', function() {
+				newBodyTicket.remove();
+				input_type.typeticket_toggleStockVisibility();
+				input_type.typeticket_actionToggleStockVisibility();
+			});
+
+        });
+
+		input_type.typeticket_remove();
+	},
     pagamento: {
         init: function init() {
             $('.conteudo .content form .input-grupo .pagamentos .pagamento input').on('input', function () {

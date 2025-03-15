@@ -1078,6 +1078,76 @@ body {
   margin-top: 20px;
   padding-top: 20px;
 }
+.conteudo .content form .input-grupo .group-tickets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.conteudo .content form .input-grupo .group-tickets .head-tickets {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.conteudo .content form .input-grupo .group-tickets .head-tickets .label {
+  width: 300px;
+  font-size: 14px;
+}
+.conteudo .content form .input-grupo .group-tickets .head-tickets .label.hidden {
+  display: none;
+}
+.conteudo .content form .input-grupo .group-tickets .head-tickets .label.preco {
+  width: 150px;
+}
+.conteudo .content form .input-grupo .group-tickets .head-tickets .label.stock {
+  width: 150px;
+}
+.conteudo .content form .input-grupo .group-tickets .body-ticket {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.conteudo .content form .input-grupo .group-tickets .body-ticket:nth-child(2) .remover {
+  display: none;
+}
+.conteudo .content form .input-grupo .group-tickets .body-ticket .input {
+  margin-top: 10px;
+  width: 300px;
+}
+.conteudo .content form .input-grupo .group-tickets .body-ticket .input.preco {
+  width: 150px;
+}
+.conteudo .content form .input-grupo .group-tickets .body-ticket .input.stock {
+  width: 150px;
+}
+.conteudo .content form .input-grupo .group-tickets .body-ticket .input.hidden {
+  display: none;
+}
+.conteudo .content form .input-grupo .group-tickets .body-ticket .remover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.conteudo .content form .input-grupo .group-tickets .body-ticket .remover span {
+  font-size: 14px;
+  color: #6f42c1;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.conteudo .content form .input-grupo .group-tickets .add {
+  background-color: #00c292;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-size: 14px;
+}
 .conteudo .content form .input-grupo.hidden {
   display: none;
 }

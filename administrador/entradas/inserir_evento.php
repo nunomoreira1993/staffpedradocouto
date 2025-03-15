@@ -18,6 +18,8 @@ if ($_POST) {
 	$campos['descricao'] = $_POST['descricao'];
 	$campos['mensagem'] = $_POST['mensagem'];
 	$campos['cartoes_sem_consumo'] = $_POST['cartoes_sem_consumo'];
+	$campos['venda_activo'] = $_POST['loja_online'];
+	$campos['venda_lotacao'] = $_POST['stock'];
 
 	if (empty($campos['nome']) && empty($_SESSION['erro'])) {
 		$_SESSION['erro'] = "Preêncha o campo 'Nome'.";
@@ -48,6 +50,24 @@ if ($_POST) {
 			}
 		}
 	}
+
+	$tipos = array();
+	if($_POST["loja_online"] == 1 && $_POST["tipo_bilhete"]) {
+		foreach($_POST["tipo_bilhete"]["bilhete"] as $k => $tipo_bilhete) {
+			$tipos[$k]["nome"] = $tipo_bilhete;
+			$tipos[$k]["lotacao"] = $_POST["tipo_bilhete"]["stock"][$k];
+			$tipos[$k]["preco"] = $_POST["tipo_bilhete"]["preco"][$k];
+
+			if(empty($_SESSION['erro']) && $tipos[$k]["nome"] == "") {
+				$_SESSION['erro'] = "Preencha o campo Nome do tipo de bilhete";
+			}
+
+			if(empty($_SESSION['erro']) && $tipos[$k]["preco"] == "") {
+				$_SESSION['erro'] = "Preencha o campo Preço do tipo de bilhete";
+			}
+		}
+	}
+
 	if (empty($_SESSION['erro'])) {
 		if ($_GET['id'] == 0) {
 			$db->Insert('eventos', $campos);
@@ -58,8 +78,22 @@ if ($_POST) {
 			$_SESSION['sucesso'] = "Alterou o evento com sucesso";
 			$db->Insert('logs', array('descricao' => "Alterou um evento", 'arr' => json_encode($campos), 'id_admin' => $_SESSION['id_utilizador'], 'tipo' => "Alteração", 'user_agent' => $_SERVER['HTTP_USER_AGENT'], 'ip' => $_SERVER['REMOTE_ADDR']));
 		}
+
+		$query = "DELETE FROM eventos_tipos_bilhetes WHERE id_evento = " . $_GET['id'];
+		$db->query($query);
+
+		if(!empty($tipos)) {
+			foreach($tipos as $tipo) {
+				$tipo["id_evento"] = $_GET['id'];
+				$db->Insert('eventos_tipos_bilhetes', $tipo);
+			}
+		}
 		header('Location:/administrador/index.php?pg=eventos');
 		exit;
+	}
+
+	if($_POST["loja_online"] == 1 && $_POST["tipo_bilhete"]) {
+		$campos["tipo_bilhete"] = $_POST["tipo_bilhete"];
 	}
 }
 
@@ -145,9 +179,88 @@ if ($campos) {
 			<small>Ao usar {NOME} ao ser enviado a mensagem vai ser substituido pelo nome do convidado; <br /> <br /> A tag {ENDERECO} é o sitio na mensagem onde vai ser enviado o URL do convite </small>
 		</div>
 		<div class="input-grupo">
+			<label for="input-nome">
+				Venda Online
+			</label>
+			<div class="input">
+				<select name="loja_online" id="input-loja_online">
+					<option value="0" <?php echo ((int) $evento["venda_activo"] == 0) ? "selected='selected'" : ""; ?>>Não</option>
+					<option value="1" <?php echo ((int) $evento["venda_activo"] == 1) ? "selected='selected'" : ""; ?>>Sim</option>
+				</select>
+			</div>
+		</div>
+		<div class="input-grupo">
+			<label for="input-nome">
+				Stock
+			</label>
+			<div class="input">
+				<input type="text" value="<?php echo $evento['venda_lotacao']; ?>" name="stock" id="input-stock" placeholder="Stock" />
+			</div>
+		</div>
+
+		<div class="input-grupo">
+			<label for="input-nome">
+				Tipos de bilhetes
+			</label>
+
+			<div class="group-tickets">
+				<div class="head-tickets">
+					<div class="label">
+						Tipo de bilhete
+					</div>
+					<div class="label preco">
+						Preço
+					</div>
+					<div class="label stock">
+						Stock
+					</div>
+				</div>
+				<?php
+				if (empty($evento['tipo_bilhete'])) {
+					?>
+					<div class="body-ticket">
+						<div class="input">
+							<input type="text" value="" name="tipo_bilhete[bilhete][]" id="input-type-nome" placeholder="Tipo de bilhete" />
+						</div>
+						<div class="input preco">
+							<input type="text" value="" name="tipo_bilhete[preco][]" id="input-type-preco" placeholder="Preço" />
+						</div>
+						<div class="input stock">
+							<input type="text" value="" name="tipo_bilhete[stock][]" id="input-type-stock_bilhete" placeholder="Stock" />
+						</div>
+						<div class="remover"><span>Remover</span></div>
+					</div>
+					<?php
+				}
+				else {
+					foreach($evento["tipo_bilhete"]["bilhete"] as $k => $bilhete) {
+						?>
+						<div class="body-ticket">
+							<div class="input">
+								<input type="text" value="<?php echo $bilhete; ?>" name="tipo_bilhete[bilhete][]" id="input-type-nome" placeholder="Tipo de bilhete" />
+							</div>
+							<div class="input preco">
+								<input type="text" value="<?php echo $evento["tipo_bilhete"]["preco"][$k]; ?>" name="tipo_bilhete[preco][]" id="input-type-preco" placeholder="Preço" />
+							</div>
+							<div class="input stock">
+								<input type="text" value="<?php echo $evento["tipo_bilhete"]["stock"][$k]; ?>" name="tipo_bilhete[stock][]" id="input-type-stock_bilhete" placeholder="Stock" />
+							</div>
+							<div class="remover"><span>Remover</span></div>
+						</div>
+						<?php
+					}
+				}
+				?>
+				<a href="#" class="add">Adicionar outro tipo de bilhete</a>
+			</div>
+		</div>
+
+		<div class="input-grupo">
 			<div class="input">
 				<input type="submit" value="Enviar" />
 			</div>
 		</div>
+
+
 	</form>
 </div>

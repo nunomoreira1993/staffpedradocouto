@@ -1086,6 +1086,79 @@ body {
           padding-top: 20px;
         }
 
+        .group-tickets {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          margin-top: 20px;
+          .head-tickets {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            .label {
+              width: 300px;
+			  font-size: 14px;
+			  &.hidden {
+				display: none;
+			  }
+			  &.preco {
+				width: 150px;
+			  }
+			  &.stock {
+				width: 150px;
+			  }
+            }
+          }
+          .body-ticket {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+			&:nth-child(2) {
+				.remover {
+					display: none;
+				}
+			}
+            .input {
+              margin-top: 10px;
+              width: 300px;
+			  &.preco {
+				width: 150px;
+			  }
+			  &.stock {
+				width: 150px;
+			  }
+			  &.hidden {
+				display: none;
+			  }
+            }
+			.remover {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				span {
+					font-size: 14px;
+					color: #6f42c1;
+					cursor: pointer;
+					text-decoration: underline;
+				}
+			}
+          }
+		  .add {
+			background-color: #00c292;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #fff;
+			padding: 10px;
+			cursor: pointer;
+			border-radius: 5px;
+			margin-top: 20px;
+			font-size: 14px;
+		  }
+        }
+
         margin-bottom: 20px;
 
         &.hidden {
@@ -3342,7 +3415,7 @@ body {
                       font-size: 12px;
                     }
                   }
-                  .entrada{
+                  .entrada {
                     width: 100%;
                     display: flex;
                     justify-content: space-between;
@@ -3381,11 +3454,10 @@ body {
                       }
                       &.libertar {
                       }
-                      &.apagar_entrada{
+                      &.apagar_entrada {
                         background: #c20000;
-
                       }
-                      &.imprimir_entrada{
+                      &.imprimir_entrada {
                         background: #c3965b;
                         color: #000;
                       }
@@ -4362,22 +4434,23 @@ body {
     height: calc(100vh - 70px);
   }
 }
-.loading{background-color: #ffffff;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    width: 80px;
-    height: 80px;
-    transform: translate(-50%, -50%);
-    border-radius: 80px;
-    z-index: 1;
+.loading {
+  background-color: #ffffff;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 80px;
+  height: 80px;
+  transform: translate(-50%, -50%);
+  border-radius: 80px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  &.active {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    display: none;
-    &.active {
-        display: flex;;
-    }
+  }
 }
 .loader {
   width: 48px;
