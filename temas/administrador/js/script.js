@@ -632,7 +632,7 @@ var rps = {
         $('.fancybox-content.entrada-ajax .calculadora a').off().on('click', function () {
             if ($(this).attr('data-numero') != "delete" && $(this).attr('data-numero') != "ok") {
                 $('.fancybox-content.entrada-ajax .resultado').html($('.fancybox-content.entrada-ajax .resultado').html().trim());
-                $('.fancybox-content.entrada-ajax .resultado').append($(this).attr('data-numero'));
+                $('.fancybox-content.entrada-ajax .resultado').html($(this).attr('data-numero'));
             } else if ($(this).attr('data-numero') == "delete") {
                 $('.fancybox-content.entrada-ajax .resultado').html($('.fancybox-content.entrada-ajax .resultado').html().slice(0, -1));
             } else if ($(this).attr('data-numero') == "ok") {

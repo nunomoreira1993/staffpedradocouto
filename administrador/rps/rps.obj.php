@@ -18,7 +18,7 @@ class rps {
 				$result_cargo = $this->db->query($sql);
 
 				if($result_cargo[0]["nrcartao"] == 0) {
-					$nrcartao = 26001;
+					$nrcartao = 24001;
 				}
 				else {
 					$nrcartao = $result_cargo[0]["nrcartao"] + 1;
@@ -29,7 +29,7 @@ class rps {
 				$result_cargo = $this->db->query($sql);
 
 				if($result_cargo[0]["nrcartao"] == 0) {
-					$nrcartao = 25001;
+					$nrcartao = 23001;
 				}
 				else {
 					$nrcartao = $result_cargo[0]["nrcartao"] + 1;
