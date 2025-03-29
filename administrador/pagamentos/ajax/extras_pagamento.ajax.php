@@ -22,6 +22,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/lib/config.php";
     </div>
     <div class="acao">
         <a href="javascript:;" class="enviar  <?php if ($extra['id'] > 0) { ?> active <?php } ?>"> Aplicar </a>
-        <a href="javascript:;" class="apagar"> Apagar </a>
+        <?php
+		/* <a href="javascript:;" class="apagar"> Apagar </a> */
+		?>
     </div>
 </div>
