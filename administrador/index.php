@@ -103,14 +103,6 @@ $tipo = $adm['tipo'];
 									Eventos
 								</a>
 							</li>
-							<?php
-							}
-							?>
-                            <li>
-                                <a href="?pg=qrcode" <?php if ($_GET['pg'] == "qrcode") { ?> class="active" <?php } ?>>
-                                    QR Code
-                                </a>
-                            </li>
                             <li>
                                 <a href="?pg=adicionar_entradas&letra=a" <?php if ($_GET['pg'] == "adicionar_entradas") { ?> class="active" <?php } ?>>
                                     Adicionar entradas
@@ -119,6 +111,14 @@ $tipo = $adm['tipo'];
                             <li>
                                 <a href="?pg=gerir_entradas" <?php if ($_GET['pg'] == "gerir_entradas") { ?> class="active" <?php } ?>>
                                     Gerir entradas
+                                </a>
+                            </li>
+							<?php
+							}
+							?>
+                            <li>
+                                <a href="?pg=qrcode" <?php if ($_GET['pg'] == "qrcode") { ?> class="active" <?php } ?>>
+                                    QR Code
                                 </a>
                             </li>
                             <li>
