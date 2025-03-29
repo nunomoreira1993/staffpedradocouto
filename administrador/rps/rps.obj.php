@@ -106,6 +106,9 @@ class rps {
 			if($filtros['not_id_cargo']){
 				$where .= " AND rps.id_cargo != " . $filtros['not_id_cargo'];
 			}
+			if($filtros['id_chefe_equipa']){
+				$where .= " AND rps.id_chefe_equipa = " . $filtros['id_chefe_equipa'];
+			}
 		}
 		if ($letra) {
 			$where .= " AND rps.nome like '" . $letra . "%'";
@@ -153,8 +156,10 @@ class rps {
 				$where .= " AND rps.nome like '%" . $filtros['nome'] . "%'";
 			}
 			if ($filtros['telemovel']) {
-
 				$where .= " AND rps.telemovel like '" . $filtros['telemovel'] . "%'";
+			}
+			if($filtros['id_chefe_equipa']){
+				$where .= " AND rps.id_chefe_equipa = " . $filtros['id_chefe_equipa'];
 			}
 		}
 
