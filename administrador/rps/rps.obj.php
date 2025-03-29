@@ -9,7 +9,39 @@ class rps {
 		return self::id_chefe_equipa;
 	}
 	function genCardNumberRP($id) {
-		return date("Ymdhis").$id;
+
+		$sql = "SELECT id, id_cargo, nrcartao FROM rps WHERE id = " . $id;
+		$result = $this->db->query($sql);
+		if($result[0]["nrcartao"] == 0) {
+			if($result[0]["id_cargo"] == 1) {
+				$sql = "SELECT nrcartao FROM rps WHERE id_cargo = 1 ORDER BY nrcartao DESC LIMIT 1";
+				$result_cargo = $this->db->query($sql);
+
+				if($result_cargo[0]["nrcartao"] == 0) {
+					$nrcartao = 26001;
+				}
+				else {
+					$nrcartao = $result_cargo[0]["nrcartao"] + 1;
+				}
+			}
+			else {
+				$sql = "SELECT nrcartao FROM rps WHERE id_cargo != 1 ORDER BY nrcartao DESC LIMIT 1";
+				$result_cargo = $this->db->query($sql);
+
+				if($result_cargo[0]["nrcartao"] == 0) {
+					$nrcartao = 25001;
+				}
+				else {
+					$nrcartao = $result_cargo[0]["nrcartao"] + 1;
+				}
+			}
+			$this->db->update("rps", array("nrcartao" => $nrcartao), array("id" => $id));
+			return $nrcartao;
+		}
+		else {
+			return $result[0]["nrcartao"];
+		}
+
 	}
 	function verificaRP($username, $password) {
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/validacao/validacao.obj.php');
