@@ -252,7 +252,11 @@ $tipo_extra = $extras[0]['tipo'];
 					<div class="acao">
 						<a href="javascript:;" class="enviar <?php if ($extraSessao[0]['id'] > 0) { ?> active <?php } ?>">
 							Aplicar </a>
+							<?php
+							/*
 						<a href="javascript:;" class="apagar"> Apagar </a>
+						*/
+						?>
 					</div>
 				</div>
 			<?php
