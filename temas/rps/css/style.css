@@ -2181,7 +2181,6 @@ body .swal-button.swal-button--danger {
 }
 .cartao-consumo-container .card .barcode {
   position: relative;
-  transform: rotate(90deg);
 }
 .cartao-consumo-container .card .barcode .pago {
   position: absolute;
@@ -2196,7 +2195,7 @@ body .swal-button.swal-button--danger {
   justify-content: center;
 }
 .cartao-consumo-container .card .barcode img {
-  width: 80vh;
+  width: 300px;
 }
 
 .qrcode-rp-homepage {
