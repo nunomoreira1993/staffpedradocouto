@@ -106,7 +106,19 @@ if ($_GET['apagar'] == 1 && $_GET['id'] > 0) {
 						</td>
 						<td class="text-nowrap">
 							<div class="opcoes">
-								<a href="?pg=rps&equipa=<?php echo $rpp['id']; ?>" class="entradas"> Equipa </a>
+								<?php
+								if(empty($_GET["equipa"])) {
+
+									$numeroRps = $dbrps->listaNumeroRPS(false, false, false, false, array("id_chefe_equipa" => $rpp['id']));
+									if($numeroRps > 0) {
+										?>
+										<a href="?pg=rps&equipa=<?php echo $rpp['id']; ?>" class="entradas"> Equipa </a>
+										<?php
+									}
+									?>
+									<?php
+								}
+								?>
 								<a href="?pg=entradas_rp&id=<?php echo $rpp['id']; ?>" class="entradas"> Entradas </a>
 								<a href="?pg=inserir_rp&id=<?php echo $rpp['id']; ?>" class="editar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
 								<a href="?pg=rps&apagar=1&id=<?php echo $rpp['id']; ?>" class="apagar"> <i class="fa fa-close text-danger"></i> </a>
