@@ -195,13 +195,14 @@ class pagamentos
 		return $res_columns;
 	}
 
-    function devolvePagamento($id_rp)
+    function devolvePagamento($id_rp, $datas = "")
     {
         if ($id_rp > 0) {
             $divida = $this->devolveDividaRP($id_rp);
 
+			if(empty($datas)) {
             $datas = $this->devolveDatasParaPagamento($id_rp);
-
+			}
 			if($datas) {
 				$faltas = $this->devolveFaltas($id_rp, $datas[count($datas)-1]['data_evento']);
 			}
