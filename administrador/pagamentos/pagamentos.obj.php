@@ -451,7 +451,7 @@ class pagamentos
 
 
         if ($resultado) {
-            $return['comissao'] = $resultado2[0]['total'] * 0.05;
+            $return['comissao'] = $resultado2[0]['total'] * 0.10;
             $return['descricao'] = "<b>" . $data_evento . "</b>: Total: " . euro($resultado2[0]['total']) . " - " . intval($resultado[0]['quantidade']) . " garrafas" . " - " . intval($resultado2[0]['total_cartoes']) . " cartões;";
             $return['total'] = ($resultado2[0]['total']);
             $return['total_cartoes'] = ($resultado2[0]['total_cartoes']);
