@@ -11,9 +11,12 @@ if (date('H') < 14) {
     $data = date('Y-m-d');
 }
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/administrador/pagamentos/pagamentos.obj.php');
-$dbpagamentos = new pagamentos($db);
-$pagamento = $dbpagamentos->devolvePagamento($id_rp);
+if(empty($pagamento)){
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/administrador/pagamentos/pagamentos.obj.php');
+	$dbpagamentos = new pagamentos($db);
+	$pagamento = $dbpagamentos->devolvePagamento($id_rp);
+}
+
 if ($pagamento['divida']) {
     ?>
 

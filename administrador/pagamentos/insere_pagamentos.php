@@ -18,12 +18,24 @@ if ($id_rp) {
 	$convites = $dbpagamentos->devolveConvites($id_rp);
 	$equipa_pagamentos = $dbpagamentos->devolveEquipa($id_rp);
 	$extraSessao = $dbpagamentos->devolveExtras($id_rp, 1);
+
+	if(!empty($extraSessao)){
+		foreach($extraSessao as $key => $extsessao) {
+			$exts[$extsessao["data_evento"]] = array();
+			$exts[$extsessao["data_evento"]]['id'] = $extsessao['id'];
+			$exts[$extsessao["data_evento"]]['valor'] = $extsessao['valor'];
+		}
+	}
 }
 
 $extras = $dbpagamentos->devolveExtras($id_rp, 0);
 $nome_extra = $extras[0]['nome'];
 $tipo_extra = $extras[0]['tipo'];
 
+
+require_once($_SERVER['DOCUMENT_ROOT'] . '/administrador/pagamentos/pagamentos.obj.php');
+$dbpagamentos = new pagamentos($db);
+$pagamento = $dbpagamentos->devolvePagamento($id_rp);
 ?>
 
 <h1 class="titulo"> Efecutar pagamento </h1>
@@ -226,40 +238,91 @@ $tipo_extra = $extras[0]['tipo'];
 		<div class="extras">
 			<div class="titulo"> Adicionar extras</div>
 			<?php
-			if ($dbpagamentos->devolveSessaoRP($id_rp) > 0) {
+			if (empty($pagamento["datas"])) {
+				if ($dbpagamentos->devolveSessaoRP($id_rp) > 0) {
 			?>
-				<div class="extra">
-					<div class="bloco">
-						<div class="label">
-							Descrição
+					<div class="extra">
+						<div class="bloco">
+							<div class="label">
+								Descrição
+							</div>
+							<div class="input">
+								<input type="text" name="descricao" placeholder="Descrição do extra" value="Valor da sessão"
+									readonly="readonly" />
+							</div>
 						</div>
-						<div class="input">
-							<input type="text" name="descricao" placeholder="Descrição do extra" value="Valor da sessão"
-								readonly="readonly" />
+						<div class="bloco">
+							<div class="label">
+								Valor
+							</div>
+							<div class="input">
+								<input type="number" name="valor" step="0.01" readonly="readonly"
+									value="<?php echo $dbpagamentos->devolveSessaoRP($id_rp); ?>" />
+								<input type="hidden" name="sessao" value="1" />
+								<input type="hidden" name="id" value="<?php echo $extraSessao[0]['id']; ?>" />
+							</div>
 						</div>
-					</div>
-					<div class="bloco">
-						<div class="label">
-							Valor
-						</div>
-						<div class="input">
-							<input type="number" name="valor" step="0.01" readonly="readonly"
-								value="<?php echo $dbpagamentos->devolveSessaoRP($id_rp); ?>" />
-							<input type="hidden" name="sessao" value="1" />
-							<input type="hidden" name="id" value="<?php echo $extraSessao[0]['id']; ?>" />
-						</div>
-					</div>
-					<div class="acao">
-						<a href="javascript:;" class="enviar <?php if ($extraSessao[0]['id'] > 0) { ?> active <?php } ?>">
-							Aplicar </a>
+						<div class="acao">
+							<a href="javascript:;" class="enviar <?php if ($extraSessao[0]['id'] > 0) { ?> active <?php } ?>">
+								Aplicar </a>
 							<?php
 							/*
-						<a href="javascript:;" class="apagar"> Apagar </a>
-						*/
-						?>
+							<a href="javascript:;" class="apagar"> Apagar </a>
+							*/
+							?>
+						</div>
 					</div>
-				</div>
+					<?php
+				}
+			} else {
+				if ($dbpagamentos->devolveSessaoRP($id_rp) > 0) {
+					foreach ($pagamento["datas"] as $pagamento_data) {
+						if(in_array($pagamento_data["data_evento"], array_keys($pagamento["faltas"]) ?:[])){
+							continue;
+						}
+
+						$id = "";
+						$id = $exts[$pagamento_data["data_evento"]]["id"] ?:"";
+
+						$valor = "";
+						$valor = $exts[$pagamento_data["data_evento"]]["valor"] ?: $dbpagamentos->devolveSessaoRP($id_rp);
+
+						?>
+						<div class="extra">
+							<div class="bloco">
+								<div class="label">
+									Descrição
+								</div>
+								<div class="input">
+									<input type="text" name="descricao" placeholder="Descrição do extra" value="Valor da sessão - <?php echo $pagamento_data["data_evento"]; ?>"
+										readonly="readonly" />
+								</div>
+							</div>
+							<div class="bloco">
+								<div class="label">
+									Valor
+								</div>
+								<div class="input">
+									<input type="number" name="valor" step="0.01" readonly="readonly"
+										value="<?php echo $valor; ?>" />
+									<input type="hidden" name="sessao" value="1" />
+									<input type="hidden" name="data_evento" value="<?php echo $pagamento_data["data_evento"]; ?>" />
+									<input type="hidden" name="id" value="<?php echo $id; ?>" />
+								</div>
+							</div>
+							<div class="acao">
+								<a href="javascript:;" class="enviar <?php if ($exts[$pagamento_data["data_evento"]]['id'] > 0) { ?> active <?php } ?>">
+									Aplicar </a>
+								<?php
+								/*
+								<a href="javascript:;" class="apagar"> Apagar </a>
+								*/
+								?>
+							</div>
+						</div>
 			<?php
+					}
+				}
 			}
 			if ($extras) {
 				foreach ($extras as $extra) {

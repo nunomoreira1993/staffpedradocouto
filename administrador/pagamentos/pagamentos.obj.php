@@ -201,8 +201,9 @@ class pagamentos
             $divida = $this->devolveDividaRP($id_rp);
 
 			if(empty($datas)) {
-            $datas = $this->devolveDatasParaPagamento($id_rp);
+          	  $datas = $this->devolveDatasParaPagamento($id_rp);
 			}
+
 			if($datas) {
 				$faltas = $this->devolveFaltas($id_rp, $datas[count($datas)-1]['data_evento']);
 			}
@@ -210,7 +211,6 @@ class pagamentos
 			$garrafas = $this->devolveComissaoGarrafas($id_rp);
 
             $equipa_pagamentos = $this->devolveEquipa($id_rp);
-
 
 			$return = array();
 
@@ -278,7 +278,7 @@ class pagamentos
         $return['extras'] = $this->devolveValoresExtras($id_rp);
 
         $return['total'] = $return['guest']['comissao'] + $return['equipa']['comissao'] + $return['privados']['comissao'] + $return['garrafas']['comissao'] - $return['convites']['comissao'] - $return['atrasos']['comissao'] + $return['extras']['total'] + ($return['divida']) - array_sum($this->faltas_euros);
-
+		$return["datas"] = $datas;
         return $return;
     }
     function devolveValidaConvite($id_rp, $data_evento)

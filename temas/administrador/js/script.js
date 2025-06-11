@@ -1245,6 +1245,13 @@ var pagamentos = {
             var sessao = $($this).parent().parent().find('input[name="sessao"]').val();
             var descricao = $($this).parent().parent().find('input[name="descricao"]').val();
 
+			if ($($this).parent().parent().find('input[name="data_evento"]').length > 0) {
+				var data_evento = $($this).parent().parent().find('input[name="data_evento"]').val();
+			}
+			else {
+				var data_evento = $_GET['data_evento'];
+			}
+
             if ($('.paga .form .detalhe .bloco .valor input[name="nome"]').length > 0) {
                 var nome = $('.paga .form .detalhe .bloco .valor input[name="nome"]').val();
 
@@ -1290,11 +1297,11 @@ var pagamentos = {
                         "id": id,
                         "valor": valor,
                         "sessao": sessao,
+						"data_evento": data_evento,
                         "descricao": descricao,
                         "nome": nome,
                         "tipo": tipo,
-                        "id_rp": $_GET['id_rp'],
-                        "data_evento": $_GET['data_evento']
+                        "id_rp": $_GET['id_rp']
                     },
                     'type': "post",
                     'url': url,

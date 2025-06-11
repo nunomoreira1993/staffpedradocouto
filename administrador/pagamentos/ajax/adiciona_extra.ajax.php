@@ -14,6 +14,7 @@ $id = intval($_POST['id']);
 if ($id_rp > 0 || $nome) {
 
     $campos['nome'] = $_POST['nome'];
+    $campos['data_evento'] = $_POST[ 'data_evento'];
     $campos['tipo'] = $_POST[ 'tipo'];
     $campos['descricao'] = $_POST['descricao'];
     $campos['valor'] = $_POST['valor'];
@@ -24,7 +25,7 @@ if ($id_rp > 0 || $nome) {
 
     if($id){
         $alterado = $db->Update( 'pagamentos_extras', $campos, "id=".$id);
-        
+
         if($alterado > 0){
             $db->Insert('logs', array('descricao' => "Alterou um extra do pagamento.", 'arr' => json_encode($campos), 'id_admin' => $_SESSION['id_utilizador'], 'tipo' => "Inserção", 'user_agent' => $_SERVER['HTTP_USER_AGENT'], 'ip' => $_SERVER['REMOTE_ADDR']));
             echo json_encode(array('sucesso' => $id,'erro' => 0));

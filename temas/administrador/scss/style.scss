@@ -3978,6 +3978,7 @@ body {
       }
 
       .extra {
+		width: 100%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -4016,6 +4017,8 @@ body {
           display: flex;
           margin: 0 auto;
           margin-top: 15px;
+		  width: 100%;
+		  justify-content: center;
 
           a {
             display: block;
