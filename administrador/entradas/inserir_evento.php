@@ -15,6 +15,7 @@ if ($_GET['id'] > 0) {
 if ($_POST) {
 	$campos['nome'] = $_POST['nome'];
 	$campos['data'] = $_POST['data'];
+	$campos['comissao_privados'] = $_POST['comissao_privados'];
 	$campos['descricao'] = $_POST['descricao'];
 	$campos['mensagem'] = $_POST['mensagem'];
 	$campos['cartoes_sem_consumo'] = $_POST['cartoes_sem_consumo'];
@@ -26,6 +27,9 @@ if ($_POST) {
 	}
 	if (empty($campos['data']) && empty($_SESSION['erro'])) {
 		$_SESSION['erro'] = "Preêncha o campo 'Data'.";
+	}
+	if (empty($campos['comissao_privados']) && empty($_SESSION['erro'])) {
+		$_SESSION['erro'] = "Preêncha o campo 'Comissão Privados'.";
 	}
 	if (empty($campos['descricao']) && empty($_SESSION['erro'])) {
 		$_SESSION['erro'] = "Preêncha o campo 'Descrição'";
@@ -131,6 +135,22 @@ if ($campos) {
 			</div>
 		</div>
 		<div class="input-grupo">
+			<label for="input-email">
+				Cartões Sem Consumo
+			</label>
+			<div class="input">
+				<input type="text" value="<?php echo $evento['cartoes_sem_consumo']; ?>" name="cartoes_sem_consumo" id="input-cartoes_sem_consumo" placeholder="Cartões Sem Consumo" />
+			</div>
+		</div>
+		<div class="input-grupo">
+			<label for="input-email">
+				Valor Comissão de Privados (%)
+			</label>
+			<div class="input">
+				<input type="text" value="<?php echo $evento['comissao_privados']; ?>" name="comissao_privados" id="input-cartoes_sem_consumo" placeholder="Comissão Privados (%)" />
+			</div>
+		</div>
+		<div class="input-grupo">
 			<label for="input-foto">
 				Imagem
 			</label>
@@ -145,14 +165,6 @@ if ($campos) {
 				}
 				?>
 				<input type="file" value="<?php echo $evento['imagem']; ?>" name="imagem" id="input-imagem" placeholder="Banner evento" />
-			</div>
-		</div>
-		<div class="input-grupo">
-			<label for="input-email">
-				Cartões Sem Consumo
-			</label>
-			<div class="input">
-				<input type="text" value="<?php echo $evento['cartoes_sem_consumo']; ?>" name="cartoes_sem_consumo" id="input-cartoes_sem_consumo" placeholder="Cartões Sem Consumo" />
 			</div>
 		</div>
 		<div class="input-grupo">

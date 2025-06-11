@@ -450,9 +450,14 @@ class pagamentos
         $query = "SELECT SUM(venda_privados.total) as total , SUM(venda_privados.numero_cartoes) as total_cartoes FROM venda_privados  WHERE venda_privados.id_rp = " . $id_rp . " AND venda_privados.data_evento = '" . $data_evento . "' AND venda_privados.total > 50 GROUP BY venda_privados.data_evento";
         $resultado2 = $this->db->query($query);
 
-
         if ($resultado) {
-            $return['comissao'] = $resultado2[0]['total'] * 0.10;
+
+			$query = "SELECT comissao_privados FROM eventos WHERE data = '" . $data_evento . "'";
+			$resultado_comissao = $this->db->query($query);
+
+			var_dump($resultado_comissao[0]["comissao_privados"] > 0 ? ($resultado_comissao[0]["comissao_privados"] / 100) : 0.10);
+
+            $return['comissao'] = $resultado2[0]['total'] * ($resultado_comissao[0]["comissao_privados"] > 0 ? ($resultado_comissao[0]["comissao_privados"] / 100) : 0.10);
             $return['descricao'] = "<b>" . $data_evento . "</b>: Total: " . euro($resultado2[0]['total']) . " - " . intval($resultado[0]['quantidade']) . " garrafas" . " - " . intval($resultado2[0]['total_cartoes']) . " cartões;";
             $return['total'] = ($resultado2[0]['total']);
             $return['total_cartoes'] = ($resultado2[0]['total_cartoes']);
