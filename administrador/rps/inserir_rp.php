@@ -14,7 +14,7 @@ if ($_GET['id'] > 0) {
     $rp = $dbrps->devolveRP($_GET['id']);
 }
 
-$rps_chefes = $dbrps->listaRps(false, false, false, ($dbrps->getIdChefeEquipa()));
+$rps_chefes = $dbrps->listaRps(false, false, false);
 
 $cargos = $dbrps->listaCargos();
 
@@ -145,14 +145,14 @@ if ($campos) {
                     <?php
                     foreach ($cargos as $cargo) {
                     ?>
-                        <option value="<?php echo $cargo['id']; ?>" <?php echo ($cargo['chefe_equipa'] == 1) ? "data-chefe-equipa='1'" : ""; ?> <?php echo ($cargo['produtor'] == 1) ? "data-produtor='1'" : ""; ?> <?php if ($rp['id_cargo'] == $cargo['id']) { ?> selected="selected" <?php } ?>> <?php echo $cargo['nome']; ?> </option>
+                        <option value="<?php echo $cargo['id']; ?>"  <?php if ($rp['id_cargo'] == $cargo['id']) { ?> selected="selected" <?php } ?>> <?php echo $cargo['nome']; ?> </option>
                     <?php
                     }
                     ?>
                 </select>
             </div>
         </div>
-        <div class="input-grupo hidden">
+        <div class="input-grupo">
             <label for="input-id_chefe_equipa">
                 Chefe de Equipa
             </label>
@@ -169,7 +169,7 @@ if ($campos) {
                 </select>
             </div>
         </div>
-		
+
         <div class="input-grupo">
             <label for="input-nome">
                 Cartão Numero Bebidas Oferta

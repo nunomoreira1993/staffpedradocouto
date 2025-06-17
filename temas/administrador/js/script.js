@@ -1558,10 +1558,10 @@ function handleShift(button) {
 
 var cargos = {
 	input: function() {
-		cargos.trataCargo($('.conteudo .content form .input-grupo .input select[name="id_cargo"]'));
-		$('.conteudo .content form .input-grupo .input select[name="id_cargo"]').on('change', function() {
-			cargos.trataCargo($(this));
-		});
+		// cargos.trataCargo($('.conteudo .content form .input-grupo .input select[name="id_cargo"]'));
+		// $('.conteudo .content form .input-grupo .input select[name="id_cargo"]').on('change', function() {
+			// cargos.trataCargo($(this));
+		// });
 	},
 	trataCargo: function($select) {
 		var value = $select.val();
